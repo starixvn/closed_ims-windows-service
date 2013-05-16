@@ -15,14 +15,26 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_BAF7158276204D74A2F367349AE0BF6A"
+        "MsmKey" = "8:_5FA7957B416A1955D7B4193F34D9EB88"
+        "OwnerKey" = "8:_FC9C2D1824E543C1A94C86395612A040"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_FC9C2D1824E543C1A94C86395612A040"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_BAF7158276204D74A2F367349AE0BF6A"
+        "OwnerKey" = "8:_FC9C2D1824E543C1A94C86395612A040"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_5FA7957B416A1955D7B4193F34D9EB88"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -65,59 +77,59 @@
     {
         "CustomAction"
         {
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_BE1A2F424DCF489FB549AAFFA644717E"
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_19B472EB373346268B447A0BFDB0C57F"
             {
-            "Name" = "8:Primary output from Fanex.Workbook.Service.Client (Active)"
+            "Name" = "8:Primary output from WorkbookServiceHost (Active)"
             "Condition" = "8:"
-            "Object" = "8:_BAF7158276204D74A2F367349AE0BF6A"
-            "FileType" = "3:2"
-            "InstallAction" = "3:2"
-            "Arguments" = "8:"
-            "EntryPoint" = "8:"
-            "Sequence" = "3:1"
-            "Identifier" = "8:_07C24709_EB86_4643_8401_D03400DFF20F"
-            "InstallerClass" = "11:TRUE"
-            "CustomActionData" = "8:"
-            }
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_EC1DEBF406DD4194AE6FB79AE23EA354"
-            {
-            "Name" = "8:Primary output from Fanex.Workbook.Service.Client (Active)"
-            "Condition" = "8:"
-            "Object" = "8:_BAF7158276204D74A2F367349AE0BF6A"
-            "FileType" = "3:2"
-            "InstallAction" = "3:3"
-            "Arguments" = "8:"
-            "EntryPoint" = "8:"
-            "Sequence" = "3:1"
-            "Identifier" = "8:_86ED2FEA_FE6A_4B7E_B6CE_B570E0A8E9AA"
-            "InstallerClass" = "11:TRUE"
-            "CustomActionData" = "8:"
-            }
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_F3ECFCA35A1144D7AC70F6417FA0ACB3"
-            {
-            "Name" = "8:Primary output from Fanex.Workbook.Service.Client (Active)"
-            "Condition" = "8:"
-            "Object" = "8:_BAF7158276204D74A2F367349AE0BF6A"
+            "Object" = "8:_FC9C2D1824E543C1A94C86395612A040"
             "FileType" = "3:2"
             "InstallAction" = "3:4"
             "Arguments" = "8:"
             "EntryPoint" = "8:"
             "Sequence" = "3:1"
-            "Identifier" = "8:_2DD32ABE_A4F8_4AB6_B01E_4B4808E7CA5D"
+            "Identifier" = "8:_D7123570_3388_413A_9A83_8E66765BD6B0"
             "InstallerClass" = "11:TRUE"
             "CustomActionData" = "8:"
             }
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_F61F5D63BD1A425586EBC1779EB4D7A7"
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_AC44D57931984478B156A8C0EE0138B5"
             {
-            "Name" = "8:Primary output from Fanex.Workbook.Service.Client (Active)"
+            "Name" = "8:Primary output from WorkbookServiceHost (Active)"
             "Condition" = "8:"
-            "Object" = "8:_BAF7158276204D74A2F367349AE0BF6A"
+            "Object" = "8:_FC9C2D1824E543C1A94C86395612A040"
+            "FileType" = "3:2"
+            "InstallAction" = "3:3"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_E294B3E6_1AA3_410A_ABE7_CFC3B23E0682"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:"
+            }
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_CF58F920E3074143858533311F7CAC59"
+            {
+            "Name" = "8:Primary output from WorkbookServiceHost (Active)"
+            "Condition" = "8:"
+            "Object" = "8:_FC9C2D1824E543C1A94C86395612A040"
+            "FileType" = "3:2"
+            "InstallAction" = "3:2"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_6E999D18_4F35_49E4_BE9E_A639053DEE52"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:"
+            }
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_E9F5F874D6464EA184C17AA33AB898AA"
+            {
+            "Name" = "8:Primary output from WorkbookServiceHost (Active)"
+            "Condition" = "8:"
+            "Object" = "8:_FC9C2D1824E543C1A94C86395612A040"
             "FileType" = "3:2"
             "InstallAction" = "3:1"
             "Arguments" = "8:"
             "EntryPoint" = "8:"
             "Sequence" = "3:1"
-            "Identifier" = "8:_7B92817D_A664_456C_9DC3_899354B6A572"
+            "Identifier" = "8:_B2E91E3F_2F68_4498_9A0A_DE3A54F37529"
             "InstallerClass" = "11:TRUE"
             "CustomActionData" = "8:"
             }
@@ -144,6 +156,37 @@
         }
         "File"
         {
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5FA7957B416A1955D7B4193F34D9EB88"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Fanex.Workbook.Service, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_5FA7957B416A1955D7B4193F34D9EB88"
+                    {
+                    "Name" = "8:Fanex.Workbook.Service.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Fanex.Workbook.Service.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_D2CBAEB6B7ED4514BFD0C421E2DD7DD7"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
         }
         "FileType"
         {
@@ -201,7 +244,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:WorkbookInstaller"
         "ProductCode" = "8:{E83316DE-BE43-4044-9641-9D96E020EB0C}"
-        "PackageCode" = "8:{FE4E059B-D7A1-499E-AB6B-1BFBFAE32E7A}"
+        "PackageCode" = "8:{772EC0C5-87C4-4852-ABAB-1385FD7760DC}"
         "UpgradeCode" = "8:{CD002C89-DD44-4EDA-BFF4-038757400150}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -720,9 +763,9 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_BAF7158276204D74A2F367349AE0BF6A"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_FC9C2D1824E543C1A94C86395612A040"
             {
-            "SourcePath" = "8:..\\Fanex.Workbook.Service.Client\\obj\\x86\\Debug\\Fanex.Workbook.Service.Client.exe"
+            "SourcePath" = "8:..\\WorkbookServiceHost\\obj\\x86\\Debug\\WorkbookServiceHost.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_D2CBAEB6B7ED4514BFD0C421E2DD7DD7"
@@ -742,7 +785,7 @@
             "ProjectOutputGroupRegister" = "3:1"
             "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:Built"
-            "OutputProjectGuid" = "8:{4B4EA528-4289-4F6B-BEBC-4B98CE357ACE}"
+            "OutputProjectGuid" = "8:{3F0912C8-74C4-4342-BC28-71F336DB5BB5}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
                 {
