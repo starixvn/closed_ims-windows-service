@@ -1,5 +1,6 @@
 ﻿using System.Runtime.Serialization;
 using System.ServiceModel;
+using ExportService.Classes;
 
 namespace Fanex.Workbook.Service
 {
@@ -11,7 +12,7 @@ namespace Fanex.Workbook.Service
         string GetData(int value);
 
         [OperationContract]
-        byte[] GetStream(int value);
+        byte[] GetStream(ExportFileInput input);
 
         [OperationContract]
         CompositeType GetDataUsingDataContract(CompositeType composite);
