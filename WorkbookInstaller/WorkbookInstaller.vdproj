@@ -15,6 +15,12 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_096D275A3A164449961B33056E2358D1"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_5FA7957B416A1955D7B4193F34D9EB88"
         "OwnerKey" = "8:_FC9C2D1824E543C1A94C86395612A040"
         "MsmSig" = "8:_UNDEFINED"
@@ -55,6 +61,27 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -71,6 +98,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -156,6 +191,26 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_096D275A3A164449961B33056E2358D1"
+            {
+            "SourcePath" = "8:..\\Fanex.Workbook.Service\\ExcelTemplate\\_ExcelTemplate.cshtml"
+            "TargetName" = "8:_ExcelTemplate.cshtml"
+            "Tag" = "8:"
+            "Folder" = "8:_B21A9480747E4E32B3DD2832A13629D1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5FA7957B416A1955D7B4193F34D9EB88"
             {
             "AssemblyRegister" = "3:1"
@@ -225,6 +280,28 @@
             "Property" = "8:TARGETDIR"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_5992AC289163456591C5096EAC99C8B0"
+                    {
+                    "Name" = "8:Output"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_3C092E6837A74E4FA4E6876A29FFF5FF"
+                        "Folders"
+                        {
+                        }
+                    }
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_B21A9480747E4E32B3DD2832A13629D1"
+                    {
+                    "Name" = "8:ExcelTemplate"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_2D618106CD784A74AC9A6984DD83206B"
+                        "Folders"
+                        {
+                        }
+                    }
                 }
             }
         }
@@ -244,7 +321,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:WorkbookInstaller"
         "ProductCode" = "8:{E83316DE-BE43-4044-9641-9D96E020EB0C}"
-        "PackageCode" = "8:{772EC0C5-87C4-4852-ABAB-1385FD7760DC}"
+        "PackageCode" = "8:{9FEB0C80-FB96-4D21-9547-684D43073CC2}"
         "UpgradeCode" = "8:{CD002C89-DD44-4EDA-BFF4-038757400150}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
