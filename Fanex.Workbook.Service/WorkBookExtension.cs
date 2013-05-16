@@ -78,10 +78,10 @@ namespace ExportService
             file.Close();
             //ms.Close();
 
-            if (File.Exists(excelFile))
-            {
-                File.Delete(excelFile);
-            }
+            //if (File.Exists(excelFile))
+            //{
+            //    File.Delete(excelFile);
+            //}
 
             return ms.ToArray();
         }
