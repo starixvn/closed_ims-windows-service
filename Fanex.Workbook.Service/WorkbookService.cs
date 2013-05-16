@@ -7,14 +7,14 @@ using ExportService.Classes;
 namespace Fanex.Workbook.Service
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
-    public class Service1 : IService1
+    public class WorkbookService : IWorkbookService
     {
         public string GetData(int value)
         {
             return string.Format("You entered: {0}", value);
         }
 
-        byte[] IService1.GetStream(ExportFileInput input)
+        byte[] IWorkbookService.GetStream(ExportFileInput input)
         {
             //try
             //{
@@ -26,7 +26,7 @@ namespace Fanex.Workbook.Service
                 
             //    return new byte[6];
             //}
-            input.htmlContent=System.IO.File.ReadAllText("D:\\_ExcelTemplate.cshtml");
+            input.htmlContent = System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "\\ExcelTemplate\\_ExcelTemplate.cshtml");
             input.format = WorkBookExtension.DocumentType.Pdf;
             input.pageOrientation = WorkBookExtension.PageOrientation.Landscape;
             return WorkBookExtension.CreateDocument(input.htmlContent, input.listCssFilePath, input.format, input.pageOrientation);

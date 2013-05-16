@@ -15,7 +15,7 @@ namespace ExportService
     /// </summary>
     public static class WorkBookExtension
     {
-        private static readonly string _fileDirectory = "D:\\";
+        private static readonly string _fileDirectory = AppDomain.CurrentDomain.BaseDirectory;
 
         private static string _xlsFileFormat;
 
@@ -47,7 +47,7 @@ namespace ExportService
 
             var css = LoadCss(listCssFilePath);
 
-            var excelTemplate = "D:\\_ExcelTemplate.cshtml";
+            var excelTemplate = _fileDirectory + "\\ExcelTemplate\\_ExcelTemplate.cshtml";
 
             if (string.IsNullOrEmpty(excelTemplate)) return null;
 
@@ -204,10 +204,10 @@ namespace ExportService
 
             //Delete temp html file
             
-            if (File.Exists(htmlFile))
-            {
-                File.Delete(htmlFile);
-            }
+            //if (File.Exists(htmlFile))
+            //{
+            //    File.Delete(htmlFile);
+            //}
 
             return docFile + _xlsFileFormat;
 

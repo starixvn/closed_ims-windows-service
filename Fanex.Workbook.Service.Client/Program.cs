@@ -11,6 +11,7 @@ namespace Fanex.Workbook.Service.Client
     {
         static void Main(string[] args)
         {
+            
             var myService = new Service1Client();
 
             var test = myService.GetStream(new ExportFileInput());

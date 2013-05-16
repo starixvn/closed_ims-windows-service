@@ -8,6 +8,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Workbook.Service.Clie
 		{7986630A-6996-4941-85A3-CA94BD76B529} = {7986630A-6996-4941-85A3-CA94BD76B529}
 	EndProjectSection
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "WorkbookInstaller", "WorkbookInstaller\WorkbookInstaller.vdproj", "{8D2C841A-1B17-476A-810A-153868A9C6FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkbookServiceHost", "WorkbookServiceHost\WorkbookServiceHost.csproj", "{3F0912C8-74C4-4342-BC28-71F336DB5BB5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +42,22 @@ Global
 		{4B4EA528-4289-4F6B-BEBC-4B98CE357ACE}.Release|Mixed Platforms.Build.0 = Release|x86
 		{4B4EA528-4289-4F6B-BEBC-4B98CE357ACE}.Release|x86.ActiveCfg = Release|x86
 		{4B4EA528-4289-4F6B-BEBC-4B98CE357ACE}.Release|x86.Build.0 = Release|x86
+		{8D2C841A-1B17-476A-810A-153868A9C6FA}.Debug|Any CPU.ActiveCfg = Debug
+		{8D2C841A-1B17-476A-810A-153868A9C6FA}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{8D2C841A-1B17-476A-810A-153868A9C6FA}.Debug|x86.ActiveCfg = Debug
+		{8D2C841A-1B17-476A-810A-153868A9C6FA}.Release|Any CPU.ActiveCfg = Release
+		{8D2C841A-1B17-476A-810A-153868A9C6FA}.Release|Mixed Platforms.ActiveCfg = Release
+		{8D2C841A-1B17-476A-810A-153868A9C6FA}.Release|x86.ActiveCfg = Release
+		{3F0912C8-74C4-4342-BC28-71F336DB5BB5}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{3F0912C8-74C4-4342-BC28-71F336DB5BB5}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{3F0912C8-74C4-4342-BC28-71F336DB5BB5}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{3F0912C8-74C4-4342-BC28-71F336DB5BB5}.Debug|x86.ActiveCfg = Debug|x86
+		{3F0912C8-74C4-4342-BC28-71F336DB5BB5}.Debug|x86.Build.0 = Debug|x86
+		{3F0912C8-74C4-4342-BC28-71F336DB5BB5}.Release|Any CPU.ActiveCfg = Release|x86
+		{3F0912C8-74C4-4342-BC28-71F336DB5BB5}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{3F0912C8-74C4-4342-BC28-71F336DB5BB5}.Release|Mixed Platforms.Build.0 = Release|x86
+		{3F0912C8-74C4-4342-BC28-71F336DB5BB5}.Release|x86.ActiveCfg = Release|x86
+		{3F0912C8-74C4-4342-BC28-71F336DB5BB5}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
