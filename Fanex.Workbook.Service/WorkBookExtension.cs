@@ -15,7 +15,7 @@ namespace ExportService
     /// </summary>
     public static class WorkBookExtension
     {
-        private static readonly string _fileDirectory = "D:\\Gito\\fanex-workbook\\Fanex.Workbook.Service\\Output\\";
+        private static readonly string _fileDirectory = "D:\\";
 
         private static string _xlsFileFormat;
 
@@ -47,7 +47,7 @@ namespace ExportService
 
             var css = LoadCss(listCssFilePath);
 
-            var excelTemplate = "D:\\Gito\\fanex-workbook\\Fanex.Workbook.Service\\" + "ExcelTemplate/_ExcelTemplate.cshtml";
+            var excelTemplate = "D:\\_ExcelTemplate.cshtml";
 
             if (string.IsNullOrEmpty(excelTemplate)) return null;
 
@@ -89,7 +89,8 @@ namespace ExportService
         private static string LoadCss(List<string> listCssFilePath)
         {
             string css = string.Empty;
-            if (!listCssFilePath.Any()) return string.Empty;
+
+            if (listCssFilePath ==null || !listCssFilePath.Any()) return string.Empty;
 
             foreach (var cssFilePath in listCssFilePath)
             {

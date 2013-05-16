@@ -26,7 +26,7 @@ namespace Fanex.Workbook.Service
                 
             //    return new byte[6];
             //}
-            input.htmlContent=System.IO.File.ReadAllText("D:\\Gito\\fanex-workbook\\Fanex.Workbook.Service\\ExcelTemplate\\_ExcelTemplate.cshtml");
+            input.htmlContent=System.IO.File.ReadAllText("D:\\_ExcelTemplate.cshtml");
             input.format = WorkBookExtension.DocumentType.Pdf;
             input.pageOrientation = WorkBookExtension.PageOrientation.Landscape;
             return WorkBookExtension.CreateDocument(input.htmlContent, input.listCssFilePath, input.format, input.pageOrientation);

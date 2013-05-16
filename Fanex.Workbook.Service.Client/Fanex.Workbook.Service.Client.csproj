@@ -58,6 +58,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Service References\WorkbookService\Arrays.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WorkbookService\ExportService.Classes.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WorkbookService\ExportService.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\WorkbookService\Fanex.Workbook.Service.Client.WorkbookService.CompositeType.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

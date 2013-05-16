@@ -13,7 +13,7 @@ namespace Fanex.Workbook.Service.Client
         {
             var myService = new Service1Client();
 
-            var test = myService.GetStream(123);
+            var test = myService.GetStream(new ExportFileInput());
             var ms = new MemoryStream(test);
 
             // convert stream to string

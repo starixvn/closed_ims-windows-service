@@ -37,6 +37,9 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import namespace="http://tempuri.org/" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/ExportService.Classes" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/ExportService" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/Fanex.Workbook.Service" />
     </xsd:schema>
   </wsdl:types>
@@ -106,9 +109,9 @@
   </wsdl:binding>
   <wsdl:service name="Service1">
     <wsdl:port name="NetTcpBinding_IService1" binding="tns:NetTcpBinding_IService1">
-      <soap12:address location="net.tcp://localhost:8732/Fanex.Workbook.Service/Service1/" />
+      <soap12:address location="net.tcp://localhost:8739/Fanex.Workbook.Service/Service1/" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:8732/Fanex.Workbook.Service/Service1/</wsa10:Address>
+        <wsa10:Address>net.tcp://localhost:8739/Fanex.Workbook.Service/Service1/</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
           <Dns>localhost</Dns>
         </Identity>

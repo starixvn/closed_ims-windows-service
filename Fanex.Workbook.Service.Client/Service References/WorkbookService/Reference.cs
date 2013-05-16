@@ -15,6 +15,121 @@ namespace Fanex.Workbook.Service.Client.WorkbookService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ExportFileInput", Namespace="http://schemas.datacontract.org/2004/07/ExportService.Classes")]
+    [System.SerializableAttribute()]
+    public partial class ExportFileInput : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Fanex.Workbook.Service.Client.WorkbookService.WorkBookExtensionDocumentType formatField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string htmlContentField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string[] listCssFilePathField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Fanex.Workbook.Service.Client.WorkbookService.WorkBookExtensionPageOrientation pageOrientationField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Fanex.Workbook.Service.Client.WorkbookService.WorkBookExtensionDocumentType format {
+            get {
+                return this.formatField;
+            }
+            set {
+                if ((this.formatField.Equals(value) != true)) {
+                    this.formatField = value;
+                    this.RaisePropertyChanged("format");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string htmlContent {
+            get {
+                return this.htmlContentField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.htmlContentField, value) != true)) {
+                    this.htmlContentField = value;
+                    this.RaisePropertyChanged("htmlContent");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string[] listCssFilePath {
+            get {
+                return this.listCssFilePathField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.listCssFilePathField, value) != true)) {
+                    this.listCssFilePathField = value;
+                    this.RaisePropertyChanged("listCssFilePath");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Fanex.Workbook.Service.Client.WorkbookService.WorkBookExtensionPageOrientation pageOrientation {
+            get {
+                return this.pageOrientationField;
+            }
+            set {
+                if ((this.pageOrientationField.Equals(value) != true)) {
+                    this.pageOrientationField = value;
+                    this.RaisePropertyChanged("pageOrientation");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="WorkBookExtension.DocumentType", Namespace="http://schemas.datacontract.org/2004/07/ExportService")]
+    public enum WorkBookExtensionDocumentType : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Xlsx = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Pdf = 1,
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="WorkBookExtension.PageOrientation", Namespace="http://schemas.datacontract.org/2004/07/ExportService")]
+    public enum WorkBookExtensionPageOrientation : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Landscape = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Portrait = 1,
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="CompositeType", Namespace="http://schemas.datacontract.org/2004/07/Fanex.Workbook.Service")]
     [System.SerializableAttribute()]
     public partial class CompositeType : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -82,7 +197,7 @@ namespace Fanex.Workbook.Service.Client.WorkbookService {
         string GetData(int value);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetStream", ReplyAction="http://tempuri.org/IService1/GetStreamResponse")]
-        byte[] GetStream(int value);
+        byte[] GetStream(Fanex.Workbook.Service.Client.WorkbookService.ExportFileInput input);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetDataUsingDataContract", ReplyAction="http://tempuri.org/IService1/GetDataUsingDataContractResponse")]
         Fanex.Workbook.Service.Client.WorkbookService.CompositeType GetDataUsingDataContract(Fanex.Workbook.Service.Client.WorkbookService.CompositeType composite);
@@ -119,8 +234,8 @@ namespace Fanex.Workbook.Service.Client.WorkbookService {
             return base.Channel.GetData(value);
         }
         
-        public byte[] GetStream(int value) {
-            return base.Channel.GetStream(value);
+        public byte[] GetStream(Fanex.Workbook.Service.Client.WorkbookService.ExportFileInput input) {
+            return base.Channel.GetStream(input);
         }
         
         public Fanex.Workbook.Service.Client.WorkbookService.CompositeType GetDataUsingDataContract(Fanex.Workbook.Service.Client.WorkbookService.CompositeType composite) {
