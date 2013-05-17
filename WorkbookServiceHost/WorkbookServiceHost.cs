@@ -7,12 +7,13 @@ using System.Linq;
 using System.ServiceProcess;
 using System.Text;
 using System.ServiceModel;
+using Fanex.Workbook.Service.Extensions;
 
 namespace WorkbookServiceHost
 {
     public partial class WorkbookServiceHost : ServiceBase
     {
-        internal static ServiceHost myServiceHost = null;
+        internal static ServiceHost WorkBookServiceHost = null;
 
         public WorkbookServiceHost()
         {
@@ -21,20 +22,29 @@ namespace WorkbookServiceHost
 
         protected override void OnStart(string[] args)
         {
-            if (myServiceHost != null)
+            try
             {
-                myServiceHost.Close();
+                if (WorkBookServiceHost != null)
+                {
+                    WorkBookServiceHost.Close();
+                }
+                WorkBookServiceHost = new ServiceHost(typeof(Fanex.Workbook.Service.WorkBookService));
+                WorkBookServiceHost.Open();
             }
-            myServiceHost = new ServiceHost(typeof(WorkbookServiceHost));
-            myServiceHost.Open();
+            catch (Exception ex)
+            {
+                FileExtension.WriteFile(ex.StackTrace);
+                throw ex;
+            }
+           
         }
 
         protected override void OnStop()
         {
-            if (myServiceHost != null)
+            if (WorkBookServiceHost != null)
             {
-                myServiceHost.Close();
-                myServiceHost = null;
+                WorkBookServiceHost.Close();
+                WorkBookServiceHost = null;
             }
         }
     }

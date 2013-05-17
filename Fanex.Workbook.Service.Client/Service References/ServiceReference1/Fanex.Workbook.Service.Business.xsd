@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Fanex.Workbook.Service.Business" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Fanex.Workbook.Service.Business" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="WorkBookManager.DocumentType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Xlsx" />
+      <xs:enumeration value="Pdf" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="WorkBookManager.DocumentType" nillable="true" type="tns:WorkBookManager.DocumentType" />
+  <xs:simpleType name="WorkBookManager.PageOrientation">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Landscape" />
+      <xs:enumeration value="Portrait" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="WorkBookManager.PageOrientation" nillable="true" type="tns:WorkBookManager.PageOrientation" />
+</xs:schema>

@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using Fanex.Workbook.Service.Client.WorkbookService;
+using Fanex.Workbook.Service.Client.ServiceReference1;
+
 
 namespace Fanex.Workbook.Service.Client
 {
@@ -12,9 +13,9 @@ namespace Fanex.Workbook.Service.Client
         static void Main(string[] args)
         {
             
-            var myService = new Service1Client();
+            var myService = new ServiceReference1.WorkbookServiceClient();
 
-            var test = myService.GetStream(new ExportFileInput());
+            var test = myService.CreateDocument(new DocumentSetting());
             var ms = new MemoryStream(test);
 
             // convert stream to string

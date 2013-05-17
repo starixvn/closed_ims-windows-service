@@ -21,8 +21,26 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_5FA7957B416A1955D7B4193F34D9EB88"
+        "MsmKey" = "8:_110282B013587B8200BC7C830ECFBBBB"
         "OwnerKey" = "8:_FC9C2D1824E543C1A94C86395612A040"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_110282B013587B8200BC7C830ECFBBBB"
+        "OwnerKey" = "8:_841E31D61E70B351CC3DAC0E69C5FC7E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_841E31D61E70B351CC3DAC0E69C5FC7E"
+        "OwnerKey" = "8:_FC9C2D1824E543C1A94C86395612A040"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B1269B3FE6DE4509BE4DC82BDED4D9D5"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -40,7 +58,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_5FA7957B416A1955D7B4193F34D9EB88"
+        "OwnerKey" = "8:_841E31D61E70B351CC3DAC0E69C5FC7E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_110282B013587B8200BC7C830ECFBBBB"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -105,6 +129,19 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
             }
         }
     }
@@ -211,14 +248,45 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5FA7957B416A1955D7B4193F34D9EB88"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_110282B013587B8200BC7C830ECFBBBB"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Fanex.MailDeliver.MailClient, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_110282B013587B8200BC7C830ECFBBBB"
+                    {
+                    "Name" = "8:Fanex.MailDeliver.MailClient.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Fanex.MailDeliver.MailClient.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_D2CBAEB6B7ED4514BFD0C421E2DD7DD7"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_841E31D61E70B351CC3DAC0E69C5FC7E"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:Fanex.Workbook.Service, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_5FA7957B416A1955D7B4193F34D9EB88"
+                    "_841E31D61E70B351CC3DAC0E69C5FC7E"
                     {
                     "Name" = "8:Fanex.Workbook.Service.dll"
                     "Attributes" = "3:512"
@@ -240,6 +308,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B1269B3FE6DE4509BE4DC82BDED4D9D5"
+            {
+            "SourcePath" = "8:..\\Fanex.Workbook.Service\\Logs\\Error\\TextFile1.txt"
+            "TargetName" = "8:TextFile1.txt"
+            "Tag" = "8:"
+            "Folder" = "8:_A07B37490A0F47C18BE244B107AC2E21"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
         }
@@ -291,6 +379,28 @@
                         {
                         }
                     }
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_A97CEA69E4E64426A20D4473D55CE276"
+                    {
+                    "Name" = "8:Logs"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_147B2FBBB86446C4A6EA29EE5CDF586C"
+                        "Folders"
+                        {
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_A07B37490A0F47C18BE244B107AC2E21"
+                            {
+                            "Name" = "8:Error"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_DA53A4EA446149B38E6F935B6F85A4FE"
+                                "Folders"
+                                {
+                                }
+                            }
+                        }
+                    }
                     "{9EF0B969-E518-4E46-987F-47570745A589}:_B21A9480747E4E32B3DD2832A13629D1"
                     {
                     "Name" = "8:ExcelTemplate"
@@ -319,9 +429,9 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:WorkbookInstaller"
+        "ProductName" = "8:Fanex Workbook Service"
         "ProductCode" = "8:{E83316DE-BE43-4044-9641-9D96E020EB0C}"
-        "PackageCode" = "8:{9FEB0C80-FB96-4D21-9547-684D43073CC2}"
+        "PackageCode" = "8:{AF846A5C-4222-4957-9062-2719F7D36157}"
         "UpgradeCode" = "8:{CD002C89-DD44-4EDA-BFF4-038757400150}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -329,12 +439,12 @@
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
         "ProductVersion" = "8:1.0.0"
-        "Manufacturer" = "8:Microsoft"
+        "Manufacturer" = "8:Nexcel"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
-        "Title" = "8:WorkbookInstaller"
+        "Title" = "8:Fanex Workbook"
         "Subject" = "8:"
-        "ARPCONTACT" = "8:Microsoft"
+        "ARPCONTACT" = "8:Nexcel"
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"

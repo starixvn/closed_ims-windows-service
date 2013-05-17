@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ServiceProcess;
 using System.Text;
+using Fanex.Workbook.Service.Extensions;
 
 namespace WorkbookServiceHost
 {
@@ -13,12 +14,21 @@ namespace WorkbookServiceHost
         /// </summary>
         static void Main()
         {
-            ServiceBase[] ServicesToRun;
-            ServicesToRun = new ServiceBase[] 
-			{ 
-				new WorkbookServiceHost() 
-			};
-            ServiceBase.Run(ServicesToRun);
+            try
+            {
+
+            
+                ServiceBase[] ServicesToRun;
+                ServicesToRun = new ServiceBase[] 
+			    { 
+				    new WorkbookServiceHost() 
+			    };
+                ServiceBase.Run(ServicesToRun);
+            }
+            catch (Exception ex)
+            {
+                FileExtension.WriteFile(ex.StackTrace);
+            }
         }
     }
 }

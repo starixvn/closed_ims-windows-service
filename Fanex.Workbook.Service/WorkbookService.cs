@@ -1,35 +1,27 @@
 ﻿using System;
 using System.IO;
 using System.Text;
-using ExportService;
-using ExportService.Classes;
+using Fanex.Workbook.Service.Business;
+using Fanex.Workbook.Service.Entities;
+using Fanex.Workbook.Service.Extensions;
 
 namespace Fanex.Workbook.Service
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
-    public class WorkbookService : IWorkbookService
+    public class WorkBookService : IWorkBookService
     {
         public string GetData(int value)
         {
+            LogExtensions.Log("what the hell");
             return string.Format("You entered: {0}", value);
         }
 
-        byte[] IWorkbookService.GetStream(ExportFileInput input)
+        public byte[] CreateDocument(DocumentSetting input)
         {
-            //try
-            //{
-            //    var ms = new MemoryStream(ASCIIEncoding.Default.GetBytes("Your string here"));
-            //    return ms.ToArray();
-            //}
-            //catch (Exception ex)
-            //{
-                
-            //    return new byte[6];
-            //}
-            input.htmlContent = System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "\\ExcelTemplate\\_ExcelTemplate.cshtml");
-            input.format = WorkBookExtension.DocumentType.Pdf;
-            input.pageOrientation = WorkBookExtension.PageOrientation.Landscape;
-            return WorkBookExtension.CreateDocument(input.htmlContent, input.listCssFilePath, input.format, input.pageOrientation);
+
+            if (input == null)
+                return null;
+            return WorkBookManager.CreateDocument(input.HtmlContent, input.CssContent, input.DocumentType, input.PageOrientation);
         }
 
 

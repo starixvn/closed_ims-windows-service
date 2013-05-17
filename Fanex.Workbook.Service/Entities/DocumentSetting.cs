@@ -4,27 +4,24 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace ExportService.Classes
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Runtime.Serialization;
+using System.Runtime.Serialization;
+using Fanex.Workbook.Service.Business;
 
+namespace Fanex.Workbook.Service.Entities
+{
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     [DataContract]
-    public class ExportFileInput
+    public class DocumentSetting
     {
         [DataMember]
-        public string htmlContent;
+        public string HtmlContent;
         [DataMember]
-        public List<string> listCssFilePath;
+        public string CssContent;
         [DataMember]
-        public ExportService.WorkBookExtension.DocumentType format;
+        public WorkBookManager.DocumentType DocumentType;
         [DataMember]
-        public ExportService.WorkBookExtension.PageOrientation pageOrientation;
+        public WorkBookManager.PageOrientation PageOrientation;
     }
 }

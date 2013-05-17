@@ -1,18 +1,18 @@
 ﻿using System.Runtime.Serialization;
 using System.ServiceModel;
-using ExportService.Classes;
+using Fanex.Workbook.Service.Entities;
 
 namespace Fanex.Workbook.Service
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
     [ServiceContract]
-    public interface IWorkbookService
+    public interface IWorkBookService
     {
         [OperationContract]
         string GetData(int value);
 
         [OperationContract]
-        byte[] GetStream(ExportFileInput input);
+        byte[] CreateDocument(DocumentSetting input);
 
         [OperationContract]
         CompositeType GetDataUsingDataContract(CompositeType composite);
