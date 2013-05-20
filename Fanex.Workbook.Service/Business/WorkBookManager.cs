@@ -153,7 +153,6 @@ namespace Fanex.Workbook.Service.Business
                                                                                    Microsoft.Office.Interop.Excel.
                                                                                        XlPlatform.xlWindows, "\t", false,
                                                                                    false, 0, true, 1, 0);
-
                 //Microsoft.Office.Interop.Excel.Workbook workBook = app.Workbooks.Open(htmlFile, Type.Missing,
 
                 //    Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing,
@@ -163,7 +162,8 @@ namespace Fanex.Workbook.Service.Business
                 //save workbook to new real Excel file
                 app.DisplayAlerts = false;
                 sheet = (Microsoft.Office.Interop.Excel.Worksheet)workBook.Worksheets[1];
-
+                sheet.PageSetup.Zoom = false;
+                sheet.PageSetup.FitToPagesWide = 1;
                 //print option
 
                 switch (pageOrientation)
@@ -180,7 +180,7 @@ namespace Fanex.Workbook.Service.Business
 
 
                 var docFile = TempDirectory + Guid.NewGuid() + _xlsFileFormat;
-
+                sheet.Columns.AutoFit();
                 switch (format)
                 {
                     case DocumentType.Xlsx:

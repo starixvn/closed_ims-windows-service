@@ -21,20 +21,20 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_110282B013587B8200BC7C830ECFBBBB"
+        "MsmKey" = "8:_5FA7957B416A1955D7B4193F34D9EB88"
         "OwnerKey" = "8:_FC9C2D1824E543C1A94C86395612A040"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_110282B013587B8200BC7C830ECFBBBB"
-        "OwnerKey" = "8:_841E31D61E70B351CC3DAC0E69C5FC7E"
+        "MsmKey" = "8:_8E8435A2B34B2B326D9A77B231BDAA9D"
+        "OwnerKey" = "8:_FC9C2D1824E543C1A94C86395612A040"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_841E31D61E70B351CC3DAC0E69C5FC7E"
-        "OwnerKey" = "8:_FC9C2D1824E543C1A94C86395612A040"
+        "MsmKey" = "8:_8E8435A2B34B2B326D9A77B231BDAA9D"
+        "OwnerKey" = "8:_5FA7957B416A1955D7B4193F34D9EB88"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -58,13 +58,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_841E31D61E70B351CC3DAC0E69C5FC7E"
+        "OwnerKey" = "8:_5FA7957B416A1955D7B4193F34D9EB88"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_110282B013587B8200BC7C830ECFBBBB"
+        "OwnerKey" = "8:_8E8435A2B34B2B326D9A77B231BDAA9D"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -248,20 +248,20 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_110282B013587B8200BC7C830ECFBBBB"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5FA7957B416A1955D7B4193F34D9EB88"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Fanex.MailDeliver.MailClient, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Fanex.Workbook.Service, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_110282B013587B8200BC7C830ECFBBBB"
+                    "_5FA7957B416A1955D7B4193F34D9EB88"
                     {
-                    "Name" = "8:Fanex.MailDeliver.MailClient.dll"
+                    "Name" = "8:Fanex.Workbook.Service.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:Fanex.MailDeliver.MailClient.dll"
+            "SourcePath" = "8:Fanex.Workbook.Service.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_D2CBAEB6B7ED4514BFD0C421E2DD7DD7"
@@ -279,20 +279,20 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_841E31D61E70B351CC3DAC0E69C5FC7E"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8E8435A2B34B2B326D9A77B231BDAA9D"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Fanex.Workbook.Service, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Fanex.MailDeliver.MailClient, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_841E31D61E70B351CC3DAC0E69C5FC7E"
+                    "_8E8435A2B34B2B326D9A77B231BDAA9D"
                     {
-                    "Name" = "8:Fanex.Workbook.Service.dll"
+                    "Name" = "8:Fanex.MailDeliver.MailClient.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:Fanex.Workbook.Service.dll"
+            "SourcePath" = "8:Fanex.MailDeliver.MailClient.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_D2CBAEB6B7ED4514BFD0C421E2DD7DD7"
@@ -431,7 +431,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Fanex Workbook Service"
         "ProductCode" = "8:{E83316DE-BE43-4044-9641-9D96E020EB0C}"
-        "PackageCode" = "8:{AF846A5C-4222-4957-9062-2719F7D36157}"
+        "PackageCode" = "8:{B5DC0320-D120-4893-AE6B-37CF803A6DC5}"
         "UpgradeCode" = "8:{CD002C89-DD44-4EDA-BFF4-038757400150}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
