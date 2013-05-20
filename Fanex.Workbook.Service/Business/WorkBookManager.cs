@@ -16,6 +16,8 @@ namespace Fanex.Workbook.Service.Business
     {
         private static readonly string FileDirectory = AppDomain.CurrentDomain.BaseDirectory + "\\";
 
+        private static readonly string TempDirectory = "C:\\";
+
         private static string _xlsFileFormat;
 
         public enum DocumentType:int
@@ -177,15 +179,17 @@ namespace Fanex.Workbook.Service.Business
 
 
 
-                var docFile = FileDirectory + Guid.NewGuid();
+                var docFile = TempDirectory + Guid.NewGuid() + _xlsFileFormat;
 
                 switch (format)
                 {
                     case DocumentType.Xlsx:
 
 
+                        
 
-                        workBook.SaveAs(docFile, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookDefault, Type.Missing,
+                        object oSaveAsFile = (object)(docFile);
+                        workBook.SaveAs(oSaveAsFile, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookDefault, Type.Missing,
                                         Type.Missing,
                                         false, false, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlShared,
                                         Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
@@ -230,7 +234,7 @@ namespace Fanex.Workbook.Service.Business
                     File.Delete(htmlFile);
                 }
 
-                return docFile + _xlsFileFormat;
+                return docFile;
             }
             catch(Exception ex )
             {
