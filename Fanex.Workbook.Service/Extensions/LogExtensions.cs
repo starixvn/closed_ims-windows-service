@@ -15,7 +15,7 @@ namespace Fanex.Workbook.Service.Extensions
             string toAddress = System.Configuration.ConfigurationManager.AppSettings["errorreceiver"];
 
             MailExtension.SendMail(toAddress, "Fanex Workbook Error", "Fanex Workbook error", ex.Message + "<br> "+ ex.StackTrace);
-            FileExtension.WriteFile(ex.StackTrace);
+            FileExtension.WriteFile(ex.Message + "\n" + ex.StackTrace);
         }
 
         public static void Log(string message = "")
