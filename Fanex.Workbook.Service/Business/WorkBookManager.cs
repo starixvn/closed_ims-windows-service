@@ -212,7 +212,7 @@ namespace Fanex.Workbook.Service.Business
                         
 
 
-                        workBook.ExportAsFixedFormat(paramExportFormat, docFile + _xlsFileFormat, paramExportQuality,
+                        workBook.ExportAsFixedFormat(paramExportFormat, docFile, paramExportQuality,
                                                      paramIncludeDocProps,
                                                      paramIgnorePrintAreas, paramFromPage, paramToPage,
                                                      paramOpenAfterPublish, paramMissing);
