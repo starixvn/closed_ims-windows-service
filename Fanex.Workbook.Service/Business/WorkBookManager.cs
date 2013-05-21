@@ -182,7 +182,7 @@ namespace Fanex.Workbook.Service.Business
 
                 var docFile = TempDirectory + Guid.NewGuid() + _xlsFileFormat;
                 sheet.Columns.AutoFit();
-                sheet.Cells.WrapText = true;
+                sheet.Cells.WrapText = false;
                 switch (format)
                 {
                     case DocumentType.Xlsx:
