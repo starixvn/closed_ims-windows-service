@@ -161,9 +161,10 @@ namespace Fanex.Workbook.Service.Business
 
                 //save workbook to new real Excel file
                 app.DisplayAlerts = false;
-                sheet = (Microsoft.Office.Interop.Excel.Worksheet)workBook.Worksheets[1];
+                sheet = (Worksheet)workBook.Worksheets[1];
                 sheet.PageSetup.Zoom = false;
                 sheet.PageSetup.FitToPagesWide = 1;
+
                 //print option
 
                 switch (pageOrientation)
@@ -181,6 +182,7 @@ namespace Fanex.Workbook.Service.Business
 
                 var docFile = TempDirectory + Guid.NewGuid() + _xlsFileFormat;
                 sheet.Columns.AutoFit();
+                sheet.Cells.WrapText = true;
                 switch (format)
                 {
                     case DocumentType.Xlsx:
