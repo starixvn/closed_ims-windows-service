@@ -20,7 +20,7 @@ namespace Fanex.Workbook.Service.Business
 
         private static string _xlsFileFormat;
 
-        public enum DocumentType:int
+        public enum DocumentType : int
         {
             Xlsx = 0,
             Pdf = 1
@@ -30,7 +30,7 @@ namespace Fanex.Workbook.Service.Business
         {
             Landscape, Portrait
         }
-        
+
         /// <summary>
         /// Create Excel Memory Stream from html
         /// </summary>
@@ -77,23 +77,19 @@ namespace Fanex.Workbook.Service.Business
                 file.Read(bytes, 0, (int)file.Length);
                 ms.Write(bytes, 0, (int)file.Length);
                 file.Close();
-
-
                 Thread.Sleep(100);
                 if (File.Exists(excelFile))
                 {
                     File.Delete(excelFile);
                 }
 
-
                 return ms.ToArray();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 LogExtensions.Log(ex);
                 return null;
             }
-
             finally
             {
                 GC.Collect();
@@ -103,14 +99,14 @@ namespace Fanex.Workbook.Service.Business
             }
 
 
-            
+
         }
 
         private static string LoadCss(List<string> listCssFilePath)
         {
             string css = string.Empty;
 
-            if (listCssFilePath ==null || !listCssFilePath.Any()) return string.Empty;
+            if (listCssFilePath == null || !listCssFilePath.Any()) return string.Empty;
 
             foreach (var cssFilePath in listCssFilePath)
             {
@@ -119,12 +115,12 @@ namespace Fanex.Workbook.Service.Business
 
                 streamCss.Close();
             }
-            
-            
+
+
             return css;
         }
 
-        private static string CreateDocFromHtml(string htmlContent, DocumentType format, PageOrientation pageOrientation)
+        private static string CreateDocFromHtml(string htmlContent, DocumentType format, PageOrientation pageOrientation, int beginRow = 0)
         {
 
             var app = new Microsoft.Office.Interop.Excel.Application();
@@ -134,39 +130,34 @@ namespace Fanex.Workbook.Service.Business
             // the reference to the worksheet,
             // we'll assume the first sheet in the book.
             Worksheet sheet = null;
-            
+
             try
             {
                 var htmlFile = CreateHtmlFile(htmlContent);
 
                 if (string.IsNullOrEmpty(htmlFile)) return string.Empty;
-
-                
                 // the range object is used to hold the data
                 // we'll be reading from and to find the range of data.
                 //var workbooks = new Workbooks();
 
                 //Binding html file to workbook
-                
+
                 object paramMissing = Type.Missing;
                 Microsoft.Office.Interop.Excel.Workbook workBook = app.Workbooks.Open(htmlFile, 0, true, 5, "", "", true,
                                                                                    Microsoft.Office.Interop.Excel.
                                                                                        XlPlatform.xlWindows, "\t", false,
                                                                                    false, 0, true, 1, 0);
                 //Microsoft.Office.Interop.Excel.Workbook workBook = app.Workbooks.Open(htmlFile, Type.Missing,
-
                 //    Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing,
-
                 //    Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
 
                 //save workbook to new real Excel file
+                var prter = app.ActivePrinter;
                 app.DisplayAlerts = false;
                 sheet = (Worksheet)workBook.Worksheets[1];
                 sheet.PageSetup.Zoom = false;
                 sheet.PageSetup.FitToPagesWide = 1;
-
                 //print option
-
                 switch (pageOrientation)
                 {
                     case PageOrientation.Landscape:
@@ -177,19 +168,29 @@ namespace Fanex.Workbook.Service.Business
                         break;
                 }
 
-
-
-
                 var docFile = TempDirectory + Guid.NewGuid() + _xlsFileFormat;
-                sheet.Columns.AutoFit();
                 sheet.Cells.WrapText = false;
+                foreach (Range cell in sheet.UsedRange.Cells)
+                {
+                    string value = Convert.ToString(cell.get_Value(Type.Missing));
+                    // Set stop flag to a specific cell
+                    //string addr = cell.get_Address(Type.Missing);
+                    //if (addr == "$H$8")
+                    //{
+                    //    addr = "";
+                    //}
+
+                    // if cell's value contain line break so alow wraptext to this cell
+                    if (value != null && value.Contains("\n"))
+                    {
+                        cell.WrapText = true;
+                    }
+                }
+
+                sheet.Columns.AutoFit();
                 switch (format)
                 {
                     case DocumentType.Xlsx:
-
-
-                        
-
                         object oSaveAsFile = (object)(docFile);
                         workBook.SaveAs(oSaveAsFile, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookDefault, Type.Missing,
                                         Type.Missing,
@@ -198,11 +199,6 @@ namespace Fanex.Workbook.Service.Business
 
                         break;
                     case DocumentType.Pdf:
-                        //
-
-
-
-
                         const XlFixedFormatType paramExportFormat = XlFixedFormatType.xlTypePDF;
 
                         const XlFixedFormatQuality paramExportQuality = XlFixedFormatQuality.xlQualityStandard;
@@ -211,24 +207,16 @@ namespace Fanex.Workbook.Service.Business
                         const bool paramIgnorePrintAreas = true;
                         var paramFromPage = Type.Missing;
                         var paramToPage = Type.Missing;
-                        
-
 
                         workBook.ExportAsFixedFormat(paramExportFormat, docFile, paramExportQuality,
                                                      paramIncludeDocProps,
                                                      paramIgnorePrintAreas, paramFromPage, paramToPage,
                                                      paramOpenAfterPublish, paramMissing);
-
                         break;
-
                 }
-
-
 
                 workBook.Close();
                 app.Workbooks.Close();
-
-
                 //Delete temp html file
 
                 if (File.Exists(htmlFile))
@@ -238,22 +226,18 @@ namespace Fanex.Workbook.Service.Business
 
                 return docFile;
             }
-            catch(Exception ex )
+            catch (Exception ex)
             {
                 LogExtensions.Log(ex);
-
                 return string.Empty;
             }
 
             finally
             {
-                
-
                 // Close the ApplicationClass object.
                 if (app != null)
                 {
                     app.Quit();
-                   
                 }
 
                 GC.Collect();
@@ -261,8 +245,6 @@ namespace Fanex.Workbook.Service.Business
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
             }
-            
-
         }
 
         private static string CreateHtmlFile(string htmlContent)
@@ -270,22 +252,18 @@ namespace Fanex.Workbook.Service.Business
             //Open a memory stream that you can use to write back to the response
             byte[] byteArray = Encoding.ASCII.GetBytes(htmlContent);
             var stream = new MemoryStream(byteArray);
-
             if (stream.Length == 0) return string.Empty;
-
-
             var fileName = Guid.NewGuid() + ".xls";
-
-
-            using (FileStream fileStream = System.IO.File.Create(FileDirectory + fileName, (int) stream.Length))
+            using (FileStream fileStream = System.IO.File.Create(FileDirectory + fileName, (int)stream.Length))
             {
                 // Fill the bytes[] array with the stream data
                 var bytesInStream = new byte[stream.Length];
-                stream.Read(bytesInStream, 0, (int) bytesInStream.Length);
+                stream.Read(bytesInStream, 0, (int)bytesInStream.Length);
 
                 // Use FileStream object to write to the specified file
                 fileStream.Write(bytesInStream, 0, bytesInStream.Length);
             }
+
             return FileDirectory + fileName;
         }
     }

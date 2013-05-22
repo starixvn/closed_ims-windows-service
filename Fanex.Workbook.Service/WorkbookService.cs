@@ -18,14 +18,10 @@ namespace Fanex.Workbook.Service
 
         public byte[] CreateDocument(DocumentSetting input)
         {
-
             if (input == null)
                 return null;
             return WorkBookManager.CreateDocument(input.HtmlContent, input.CssContent, input.DocumentType, input.PageOrientation);
         }
-
-
-
 
         public CompositeType GetDataUsingDataContract(CompositeType composite)
         {
