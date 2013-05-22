@@ -157,6 +157,14 @@ namespace Fanex.Workbook.Service.Business
                 sheet = (Worksheet)workBook.Worksheets[1];
                 sheet.PageSetup.Zoom = false;
                 sheet.PageSetup.FitToPagesWide = 1;
+                //sheet.PageSetup.TopMargin = 1;
+                //sheet.PageSetup.BottomMargin = 1;
+                //sheet.PageSetup.LeftMargin = 0.25;
+                //sheet.PageSetup.RightMargin = 0.25;
+                //sheet.PageSetup.HeaderMargin = 0.5;
+                //sheet.PageSetup.FooterMargin = 0.5;
+                sheet.PageSetup.CenterHorizontally = true;
+
                 //print option
                 switch (pageOrientation)
                 {
