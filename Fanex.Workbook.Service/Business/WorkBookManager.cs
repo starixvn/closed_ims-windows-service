@@ -169,23 +169,23 @@ namespace Fanex.Workbook.Service.Business
                 }
 
                 var docFile = TempDirectory + Guid.NewGuid() + _xlsFileFormat;
-                sheet.Cells.WrapText = false;
-                foreach (Range cell in sheet.UsedRange.Cells)
-                {
-                    string value = Convert.ToString(cell.get_Value(Type.Missing));
-                    // Set stop flag to a specific cell
-                    //string addr = cell.get_Address(Type.Missing);
-                    //if (addr == "$H$8")
-                    //{
-                    //    addr = "";
-                    //}
+                //sheet.Cells.WrapText = false;
+                //foreach (Range cell in sheet.UsedRange.Cells)
+                //{
+                //    string value = Convert.ToString(cell.get_Value(Type.Missing));
+                //    // Set stop flag to a specific cell
+                //    //string addr = cell.get_Address(Type.Missing);
+                //    //if (addr == "$H$8")
+                //    //{
+                //    //    addr = "";
+                //    //}
 
-                    // if cell's value contain line break so alow wraptext to this cell
-                    if (value != null && value.Contains("\n"))
-                    {
-                        cell.WrapText = true;
-                    }
-                }
+                //    // if cell's value contain line break so alow wraptext to this cell
+                //    if (value != null && value.Contains("\n"))
+                //    {
+                //        cell.WrapText = true;
+                //    }
+                //}
 
                 sheet.Columns.AutoFit();
                 switch (format)
