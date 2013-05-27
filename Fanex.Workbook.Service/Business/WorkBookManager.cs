@@ -20,6 +20,8 @@ namespace Fanex.Workbook.Service.Business
 
         private static string _xlsFileFormat;
 
+        private const double DocumentWidth = 1040;
+
         public enum DocumentType : int
         {
             Xlsx = 0,
@@ -153,16 +155,16 @@ namespace Fanex.Workbook.Service.Business
 
                 //save workbook to new real Excel file
                 var prter = app.ActivePrinter;
+                var margin = app.InchesToPoints(0.75);
                 app.DisplayAlerts = false;
                 sheet = (Worksheet)workBook.Worksheets[1];
                 sheet.PageSetup.Zoom = false;
                 sheet.PageSetup.FitToPagesWide = 1;
-                //sheet.PageSetup.TopMargin = 1;
-                //sheet.PageSetup.BottomMargin = 1;
-                //sheet.PageSetup.LeftMargin = 0.25;
-                //sheet.PageSetup.RightMargin = 0.25;
-                //sheet.PageSetup.HeaderMargin = 0.5;
-                //sheet.PageSetup.FooterMargin = 0.5;
+                sheet.PageSetup.TopMargin = margin;
+                sheet.PageSetup.BottomMargin = margin;
+                sheet.PageSetup.LeftMargin = margin;
+                sheet.PageSetup.RightMargin = margin;
+
                 sheet.PageSetup.CenterHorizontally = true;
 
                 //print option
@@ -196,6 +198,31 @@ namespace Fanex.Workbook.Service.Business
                 //}
 
                 sheet.Columns.AutoFit();
+
+                var usedRange = sheet.UsedRange;
+                var colCount = usedRange.Columns.Count;
+                var width = usedRange.Width;
+                // if the width of document smaller than default document width so the columns after the second column will be expanded
+                if (width < DocumentWidth)
+                {
+                    double expandedWidth = DocumentWidth - width;
+                    double expendedWidthForEachCol = expandedWidth / colCount - 2;
+                    int count = 0;
+                    foreach (Microsoft.Office.Interop.Excel.Range col in usedRange.Columns)
+                    {
+                        // ignore the first 2 columns A & B
+                        if (count < 2)
+                        {
+                            count++;
+                            continue;
+                        }
+
+                        col.ColumnWidth += expendedWidthForEachCol * (8.43 / 48);
+                    }
+                }
+                Microsoft.Office.Interop.Excel.Range offset = sheet.UsedRange.Offset;
+
+
                 switch (format)
                 {
                     case DocumentType.Xlsx:
