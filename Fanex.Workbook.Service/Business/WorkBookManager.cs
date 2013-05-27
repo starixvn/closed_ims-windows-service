@@ -155,15 +155,12 @@ namespace Fanex.Workbook.Service.Business
 
                 //save workbook to new real Excel file
                 var prter = app.ActivePrinter;
-                var margin = app.InchesToPoints(0.75);
+
                 app.DisplayAlerts = false;
                 sheet = (Worksheet)workBook.Worksheets[1];
                 sheet.PageSetup.Zoom = false;
                 sheet.PageSetup.FitToPagesWide = 1;
-                sheet.PageSetup.TopMargin = margin;
-                sheet.PageSetup.BottomMargin = margin;
-                sheet.PageSetup.LeftMargin = margin;
-                sheet.PageSetup.RightMargin = margin;
+
 
                 sheet.PageSetup.CenterHorizontally = true;
 
@@ -226,6 +223,11 @@ namespace Fanex.Workbook.Service.Business
                 switch (format)
                 {
                     case DocumentType.Xlsx:
+                        var margin = app.InchesToPoints(0.5);
+                        sheet.PageSetup.TopMargin = margin;
+                        sheet.PageSetup.BottomMargin = margin;
+                        sheet.PageSetup.LeftMargin = margin;
+                        sheet.PageSetup.RightMargin = margin;
                         object oSaveAsFile = (object)(docFile);
                         workBook.SaveAs(oSaveAsFile, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookDefault, Type.Missing,
                                         Type.Missing,
@@ -242,7 +244,10 @@ namespace Fanex.Workbook.Service.Business
                         const bool paramIgnorePrintAreas = true;
                         var paramFromPage = Type.Missing;
                         var paramToPage = Type.Missing;
-
+                        sheet.PageSetup.TopMargin = 0;
+                        sheet.PageSetup.BottomMargin = 0;
+                        sheet.PageSetup.LeftMargin = 0;
+                        sheet.PageSetup.RightMargin = 0;
                         workBook.ExportAsFixedFormat(paramExportFormat, docFile, paramExportQuality,
                                                      paramIncludeDocProps,
                                                      paramIgnorePrintAreas, paramFromPage, paramToPage,
