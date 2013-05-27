@@ -219,15 +219,17 @@ namespace Fanex.Workbook.Service.Business
                 }
                 Microsoft.Office.Interop.Excel.Range offset = sheet.UsedRange.Offset;
 
-
+                double marginLeftRight;
+                double marginTopBottom;
                 switch (format)
                 {
                     case DocumentType.Xlsx:
-                        var margin = app.InchesToPoints(0.5);
-                        sheet.PageSetup.TopMargin = margin;
-                        sheet.PageSetup.BottomMargin = margin;
-                        sheet.PageSetup.LeftMargin = margin;
-                        sheet.PageSetup.RightMargin = margin;
+                        marginLeftRight = app.InchesToPoints(0.5);
+                        marginTopBottom = app.InchesToPoints(0.75);
+                        sheet.PageSetup.TopMargin = marginTopBottom;
+                        sheet.PageSetup.BottomMargin = marginTopBottom;
+                        sheet.PageSetup.LeftMargin = marginLeftRight;
+                        sheet.PageSetup.RightMargin = marginLeftRight;
                         object oSaveAsFile = (object)(docFile);
                         workBook.SaveAs(oSaveAsFile, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookDefault, Type.Missing,
                                         Type.Missing,
@@ -244,8 +246,9 @@ namespace Fanex.Workbook.Service.Business
                         const bool paramIgnorePrintAreas = true;
                         var paramFromPage = Type.Missing;
                         var paramToPage = Type.Missing;
-                        sheet.PageSetup.TopMargin = 0;
-                        sheet.PageSetup.BottomMargin = 0;
+                        marginTopBottom = app.InchesToPoints(0.5);
+                        sheet.PageSetup.TopMargin = marginTopBottom;
+                        sheet.PageSetup.BottomMargin = marginTopBottom;
                         sheet.PageSetup.LeftMargin = 0;
                         sheet.PageSetup.RightMargin = 0;
                         workBook.ExportAsFixedFormat(paramExportFormat, docFile, paramExportQuality,
