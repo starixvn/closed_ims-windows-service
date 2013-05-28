@@ -6,6 +6,7 @@
 
 using System.Runtime.Serialization;
 using Fanex.Workbook.Service.Business;
+using System.Collections.Generic;
 
 namespace Fanex.Workbook.Service.Entities
 {
@@ -16,12 +17,26 @@ namespace Fanex.Workbook.Service.Entities
     public class DocumentSetting
     {
         [DataMember]
-        public string HtmlContent;
+        public List<PageSetting> PageList;
         [DataMember]
         public string CssContent;
         [DataMember]
         public WorkBookManager.DocumentType DocumentType;
+
+        public DocumentSetting()
+        {
+            PageList = new List<PageSetting>();
+        }
+    }
+
+    [DataContract]
+    public class PageSetting
+    {
+        [DataMember]
+        public string HtmlContent;
+
         [DataMember]
         public WorkBookManager.PageOrientation PageOrientation;
     }
+
 }
