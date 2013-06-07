@@ -1,6 +1,7 @@
 ﻿using System.Runtime.Serialization;
 using System.ServiceModel;
 using Fanex.Workbook.Service.Entities;
+using System.Collections.Generic;
 
 namespace Fanex.Workbook.Service
 {
@@ -12,7 +13,7 @@ namespace Fanex.Workbook.Service
         string GetData(int value);
 
         [OperationContract]
-        byte[] CreateDocument(DocumentSetting input);
+        byte[] CreateDocument(List<DocumentSetting> input);
 
         [OperationContract]
         CompositeType GetDataUsingDataContract(CompositeType composite);

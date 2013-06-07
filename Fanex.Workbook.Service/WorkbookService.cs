@@ -4,6 +4,7 @@ using System.Text;
 using Fanex.Workbook.Service.Business;
 using Fanex.Workbook.Service.Entities;
 using Fanex.Workbook.Service.Extensions;
+using System.Collections.Generic;
 
 namespace Fanex.Workbook.Service
 {
@@ -16,12 +17,12 @@ namespace Fanex.Workbook.Service
             return string.Format("You entered: {0}", value);
         }
 
-        public byte[] CreateDocument(DocumentSetting input)
+        public byte[] CreateDocument(List<DocumentSetting> input)
         {
             if (input == null)
                 return null;
             //return WorkBookManager.CreateDocument(input.HtmlContent, input.CssContent, input.DocumentType, input.PageOrientation);
-            return WorkBookManager.CreateDocument(input.PageList, input.CssContent, input.DocumentType);
+            return WorkBookManager.CreateDocument(input);
         }
 
         public CompositeType GetDataUsingDataContract(CompositeType composite)

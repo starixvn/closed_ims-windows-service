@@ -313,10 +313,12 @@ namespace Fanex.Workbook.Service.Business
         }
 
 
-        public static byte[] CreateDocument(List<PageSetting> PageList, string cssContent, DocumentType format)
+        //public static byte[] CreateDocument(List<PageSetting> PageList, string cssContent, DocumentType format)
+        public static byte[] CreateDocument( List<DocumentSetting> sheetList)
         {
             try
             {
+                DocumentType format = sheetList[0].DocumentType;
                 var isExists = System.IO.Directory.Exists(FileDirectory);
                 List<PageSetting> templateList = new List<PageSetting>();
                 if (!isExists)
@@ -329,7 +331,7 @@ namespace Fanex.Workbook.Service.Business
 
                 var templateTmp = streamTemplate.ReadToEnd();
 
-                for (int i = 0; i < PageList.Count; i++)
+                for (int i = 0; i < sheetList.Count; i++)
                 {
                     PageSetting pageTemp = new PageSetting();
 
@@ -337,18 +339,18 @@ namespace Fanex.Workbook.Service.Business
                     template = templateTmp;
 
                     //Assign css
-                    template = template.Replace("<!--style-->", cssContent);
+                    template = template.Replace("<!--style-->", sheetList[i].CssContent);
 
                     //Assign data
-                    template = template.Replace("<!--data-->", PageList[i].HtmlContent);
+                    template = template.Replace("<!--data-->", sheetList[i].HtmlContent);
 
-                    PageList[i].HtmlContent = string.Empty;
-                    PageList[i].HtmlContent = template;
+                    sheetList[i].HtmlContent = string.Empty;
+                    sheetList[i].HtmlContent = template;
                 }
 
                 streamTemplate.Close();
                 _xlsFileFormat = "." + format.ToString().ToLower();
-                string excelFile = CreateDocFromHtml(PageList, format);
+                string excelFile = CreateDocFromHtml(sheetList);
                 if (string.IsNullOrEmpty(excelFile)) return null;
 
                 var ms = new MemoryStream();
@@ -383,9 +385,9 @@ namespace Fanex.Workbook.Service.Business
 
         }
 
-        private static string CreateDocFromHtml(List<PageSetting> PageList, DocumentType format, int beginRow = 0)
+        private static string CreateDocFromHtml(List<DocumentSetting> sheetList,int beginRow = 0)
         {
-
+            DocumentType format = sheetList[0].DocumentType;
             var app = new Microsoft.Office.Interop.Excel.Application();
             // the reference to the workbook,
             // which is the xls document to read from.
@@ -396,7 +398,7 @@ namespace Fanex.Workbook.Service.Business
 
             try
             {
-                var htmlFile = CreateHtmlFile(PageList[0].HtmlContent);
+                var htmlFile = CreateHtmlFile(sheetList[0].HtmlContent);
 
                 if (string.IsNullOrEmpty(htmlFile)) return string.Empty;
                 // the range object is used to hold the data
@@ -426,7 +428,7 @@ namespace Fanex.Workbook.Service.Business
                 sheet.PageSetup.CenterHorizontally = true;
 
                 //print option
-                switch (PageList[0].PageOrientation)
+                switch (sheetList[0].PageOrientation)
                 {
                     case PageOrientation.Landscape:
                         sheet.PageSetup.Orientation = Microsoft.Office.Interop.Excel.XlPageOrientation.xlLandscape;
@@ -480,9 +482,9 @@ namespace Fanex.Workbook.Service.Business
                 }
                 Microsoft.Office.Interop.Excel.Range offset = sheet.UsedRange.Offset;
 
-                for (int i = 1; i < PageList.Count; i++)
+                for (int i = 1; i < sheetList.Count; i++)
                 {
-                    var hmtlName = CreateHtmlFile(PageList[i].HtmlContent);
+                    var hmtlName = CreateHtmlFile(sheetList[i].HtmlContent);
 
                     Microsoft.Office.Interop.Excel.Workbook workBook1 = app.Workbooks.Open(hmtlName, 0, true, 5, "", "", true,
                                                                                           Microsoft.Office.Interop.Excel.
@@ -493,7 +495,7 @@ namespace Fanex.Workbook.Service.Business
                     sel1.Copy(Type.Missing);
 
                     Microsoft.Office.Interop.Excel._Worksheet sheet1_1 = (Microsoft.Office.Interop.Excel._Worksheet)workBook.Worksheets.Add(
-                            Type.Missing, Type.Missing, Type.Missing, Type.Missing
+                            Type.Missing, sheet, Type.Missing, Type.Missing
                             );
 
                     sheet1_1.Paste(Type.Missing, Type.Missing);
@@ -504,7 +506,7 @@ namespace Fanex.Workbook.Service.Business
 
                     sheet1_1.PageSetup.CenterHorizontally = true;
 
-                    switch (PageList[i].PageOrientation)
+                    switch (sheetList[i].PageOrientation)
                     {
                         case PageOrientation.Landscape:
                             sheet1_1.PageSetup.Orientation = Microsoft.Office.Interop.Excel.XlPageOrientation.xlLandscape;
@@ -516,72 +518,6 @@ namespace Fanex.Workbook.Service.Business
 
                     workBook1.Close();
                 }
-
-
-                //Microsoft.Office.Interop.Excel.Workbook workBook1 = app.Workbooks.Open(@"D:\INVOICE SYSTEM\Document\12Bet_Sportsbook_Settlement_From_01-Apr-13_To_30-Apr-13.xlsx", 0, true, 5, "", "", true,
-                //                                                                      Microsoft.Office.Interop.Excel.
-                //                                                                          XlPlatform.xlWindows, "\t", false,
-                //                                                                      false, 0, true, 1, 0);
-
-                //Worksheet sheet1 = (Worksheet)workBook1.Worksheets[1];
-                //Microsoft.Office.Interop.Excel.Range sel1 = sheet1.Cells;
-                //sel1.Copy(Type.Missing);
-
-                //Microsoft.Office.Interop.Excel._Worksheet sheet1_1 = (Microsoft.Office.Interop.Excel._Worksheet)workBook.Worksheets.Add(
-                //        Type.Missing, Type.Missing, Type.Missing, Type.Missing
-                //        );
-
-                //sheet1_1.Paste(Type.Missing, Type.Missing);
-
-                //sheet1_1.PageSetup.Zoom = false;
-                //sheet1_1.PageSetup.FitToPagesWide = 1;
-                //sheet1_1.Columns.AutoFit();
-
-                //sheet1_1.PageSetup.CenterHorizontally = true;
-
-                ////////////////////
-                //Microsoft.Office.Interop.Excel.Workbook workBook2 = app.Workbooks.Open(@"D:\INVOICE SYSTEM\Document\12Bet_Number Game_Settlement_From_01-Apr-13_To_30-Apr-13.xlsx", 0, true, 5, "", "", true,
-                //                                                                  Microsoft.Office.Interop.Excel.
-                //                                                                      XlPlatform.xlWindows, "\t", false,
-                //                                                                  false, 0, true, 1, 0);
-
-                //Worksheet sheet2 = (Worksheet)workBook2.Worksheets[1];
-                //Microsoft.Office.Interop.Excel.Range sel2 = sheet2.Cells;
-                //sel2.Copy(Type.Missing);
-
-                //Microsoft.Office.Interop.Excel._Worksheet sheet1_2 = (Microsoft.Office.Interop.Excel._Worksheet)workBook.Worksheets.Add(
-                //        Type.Missing, Type.Missing, Type.Missing, Type.Missing
-                //        );
-
-                //sheet1_2.Paste(Type.Missing, Type.Missing);
-
-                //sheet1_2.PageSetup.Zoom = false;
-                //sheet1_2.PageSetup.FitToPagesWide = 1;
-                //sheet1_2.Columns.AutoFit();
-
-                //sheet1_2.PageSetup.CenterHorizontally = true;
-
-                ////////////////////
-                //Microsoft.Office.Interop.Excel.Workbook workBook3 = app.Workbooks.Open(@"D:\INVOICE SYSTEM\Document\12Bet_BA_Settlement_From_01-Apr-13_To_30-Apr-13.xlsx", 0, true, 5, "", "", true,
-                //                                                                  Microsoft.Office.Interop.Excel.
-                //                                                                      XlPlatform.xlWindows, "\t", false,
-                //                                                                  false, 0, true, 1, 0);
-
-                //Worksheet sheet3 = (Worksheet)workBook3.Worksheets[1];
-                //Microsoft.Office.Interop.Excel.Range sel3 = sheet3.Cells;
-                //sel3.Copy(Type.Missing);
-
-                //Microsoft.Office.Interop.Excel._Worksheet sheet1_3 = (Microsoft.Office.Interop.Excel._Worksheet)workBook.Worksheets.Add(
-                //        Type.Missing, Type.Missing, Type.Missing, Type.Missing
-                //        );
-
-                //sheet1_3.Paste(Type.Missing, Type.Missing);
-
-                //sheet1_3.PageSetup.Zoom = false;
-                //sheet1_3.PageSetup.FitToPagesWide = 1;
-                //sheet1_3.Columns.AutoFit();
-
-                //sheet1_3.PageSetup.CenterHorizontally = true;
 
                 double marginLeftRight;
                 double marginTopBottom;

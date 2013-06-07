@@ -16,17 +16,23 @@ namespace Fanex.Workbook.Service.Entities
     [DataContract]
     public class DocumentSetting
     {
-        [DataMember]
-        public List<PageSetting> PageList;
+        //[DataMember]
+        //public List<PageSetting> PageList;
         [DataMember]
         public string CssContent;
+
+        [DataMember]
+        public string HtmlContent;
+
         [DataMember]
         public WorkBookManager.DocumentType DocumentType;
 
-        public DocumentSetting()
-        {
-            PageList = new List<PageSetting>();
-        }
+        [DataMember]
+        public WorkBookManager.PageOrientation PageOrientation;
+        //public DocumentSetting()
+        //{
+        //    PageList = new List<PageSetting>();
+        //}
     }
 
     [DataContract]
