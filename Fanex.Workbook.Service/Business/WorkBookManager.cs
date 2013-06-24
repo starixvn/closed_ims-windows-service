@@ -398,6 +398,8 @@ namespace Fanex.Workbook.Service.Business
 
             try
             {
+                double marginLeftRight;
+                double marginTopBottom;
                 var htmlFile = CreateHtmlFile(sheetList[0].HtmlContent);
 
                 if (string.IsNullOrEmpty(htmlFile)) return string.Empty;
@@ -439,48 +441,34 @@ namespace Fanex.Workbook.Service.Business
                 }
 
                 var docFile = TempDirectory + Guid.NewGuid() + _xlsFileFormat;
-                //sheet.Cells.WrapText = false;
-                //foreach (Range cell in sheet.UsedRange.Cells)
-                //{
-                //    string value = Convert.ToString(cell.get_Value(Type.Missing));
-                //    // Set stop flag to a specific cell
-                //    //string addr = cell.get_Address(Type.Missing);
-                //    //if (addr == "$H$8")
-                //    //{
-                //    //    addr = "";
-                //    //}
 
-                //    // if cell's value contain line break so alow wraptext to this cell
-                //    if (value != null && value.Contains("\n"))
-                //    {
-                //        cell.WrapText = true;
-                //    }
-                //}
-
-                sheet.Columns.AutoFit();
-
-                var usedRange = sheet.UsedRange;
-                var colCount = usedRange.Columns.Count;
-                var width = usedRange.Width;
-                // if the width of document smaller than default document width so the columns after the second column will be expanded
-                if (width < DocumentWidth)
+                if (sheetList[0].IsAutoFit)
                 {
-                    double expandedWidth = DocumentWidth - width;
-                    double expendedWidthForEachCol = expandedWidth / colCount - 2;
-                    int count = 0;
-                    foreach (Microsoft.Office.Interop.Excel.Range col in usedRange.Columns)
-                    {
-                        // ignore the first 2 columns A & B
-                        if (count < 2)
-                        {
-                            count++;
-                            continue;
-                        }
+                    sheet.Columns.AutoFit();
 
-                        col.ColumnWidth += expendedWidthForEachCol * (8.43 / 48);
+                    var usedRange = sheet.UsedRange;
+                    var colCount = usedRange.Columns.Count;
+                    var width = usedRange.Width;
+                    // if the width of document smaller than default document width so the columns after the second column will be expanded
+                    if (width < DocumentWidth)
+                    {
+                        double expandedWidth = DocumentWidth - width;
+                        double expendedWidthForEachCol = expandedWidth / colCount - 2;
+                        int count = 0;
+                        foreach (Microsoft.Office.Interop.Excel.Range col in usedRange.Columns)
+                        {
+                            // ignore the first 2 columns A & B
+                            if (count < 2)
+                            {
+                                count++;
+                                continue;
+                            }
+
+                            col.ColumnWidth += expendedWidthForEachCol * (8.43 / 48);
+                        }
                     }
+                    Microsoft.Office.Interop.Excel.Range offset = sheet.UsedRange.Offset;
                 }
-                Microsoft.Office.Interop.Excel.Range offset = sheet.UsedRange.Offset;
 
                 for (int i = 1; i < sheetList.Count; i++)
                 {
@@ -502,7 +490,35 @@ namespace Fanex.Workbook.Service.Business
 
                     sheet1_1.PageSetup.Zoom = false;
                     sheet1_1.PageSetup.FitToPagesWide = 1;
-                    sheet1_1.Columns.AutoFit();
+
+
+                    if (sheetList[i].IsAutoFit)
+                    {
+                        sheet1_1.Columns.AutoFit();
+
+                        var usedRange = sheet1_1.UsedRange;
+                        var colCount = usedRange.Columns.Count;
+                        var width = usedRange.Width;
+                        // if the width of document smaller than default document width so the columns after the second column will be expanded
+                        if (width < DocumentWidth)
+                        {
+                            double expandedWidth = DocumentWidth - width;
+                            double expendedWidthForEachCol = expandedWidth / colCount - 2;
+                            int count = 0;
+                            foreach (Microsoft.Office.Interop.Excel.Range col in usedRange.Columns)
+                            {
+                                // ignore the first 2 columns A & B
+                                if (count < 2)
+                                {
+                                    count++;
+                                    continue;
+                                }
+
+                                col.ColumnWidth += expendedWidthForEachCol * (8.43 / 48);
+                            }
+                        }
+                        Microsoft.Office.Interop.Excel.Range offset = sheet1_1.UsedRange.Offset;
+                    }
 
                     sheet1_1.PageSetup.CenterHorizontally = true;
 
@@ -516,11 +532,47 @@ namespace Fanex.Workbook.Service.Business
                             break;
                     }
 
+                    switch (format)
+                    {
+                        case DocumentType.Xlsx:
+                            marginLeftRight = app.InchesToPoints(0.5);
+                            marginTopBottom = app.InchesToPoints(0.75);
+                            sheet1_1.PageSetup.TopMargin = marginTopBottom;
+                            sheet1_1.PageSetup.BottomMargin = marginTopBottom;
+                            sheet1_1.PageSetup.LeftMargin = marginLeftRight;
+                            sheet1_1.PageSetup.RightMargin = marginLeftRight;
+                            object oSaveAsFile = (object)(docFile);
+                            workBook1.SaveAs(oSaveAsFile, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookDefault, Type.Missing,
+                                            Type.Missing,
+                                            false, false, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlShared,
+                                            Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+
+                            break;
+                        case DocumentType.Pdf:
+                            const XlFixedFormatType paramExportFormat = XlFixedFormatType.xlTypePDF;
+
+                            const XlFixedFormatQuality paramExportQuality = XlFixedFormatQuality.xlQualityStandard;
+                            const bool paramOpenAfterPublish = false;
+                            const bool paramIncludeDocProps = true;
+                            const bool paramIgnorePrintAreas = true;
+                            var paramFromPage = Type.Missing;
+                            var paramToPage = Type.Missing;
+                            marginTopBottom = app.InchesToPoints(0.5);
+                            sheet1_1.PageSetup.TopMargin = marginTopBottom;
+                            sheet1_1.PageSetup.BottomMargin = marginTopBottom;
+                            sheet1_1.PageSetup.LeftMargin = 0;
+                            sheet1_1.PageSetup.RightMargin = 0;
+                            workBook1.ExportAsFixedFormat(paramExportFormat, docFile, paramExportQuality,
+                                                         paramIncludeDocProps,
+                                                         paramIgnorePrintAreas, paramFromPage, paramToPage,
+                                                         paramOpenAfterPublish, paramMissing);
+                            break;
+                    }
+
                     workBook1.Close();
                 }
 
-                double marginLeftRight;
-                double marginTopBottom;
+               
                 switch (format)
                 {
                     case DocumentType.Xlsx:

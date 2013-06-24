@@ -29,6 +29,9 @@ namespace Fanex.Workbook.Service.Entities
 
         [DataMember]
         public WorkBookManager.PageOrientation PageOrientation;
+
+        [DataMember]
+        public bool IsAutoFit;
         //public DocumentSetting()
         //{
         //    PageList = new List<PageSetting>();
