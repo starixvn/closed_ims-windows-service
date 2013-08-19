@@ -151,11 +151,8 @@ namespace Fanex.Workbook.Service.Business
             DocumentType format = sheetList[0].DocumentType;
             var app = new Microsoft.Office.Interop.Excel.Application();
             var workBooks = app.Workbooks;
-            // the reference to the worksheet,
-            // we'll assume the first sheet in the book.
 
             Microsoft.Office.Interop.Excel.Workbook workBook = workBooks.Add(XlWBATemplate.xlWBATWorksheet);
-            Sheets newBookWorksheets = workBook.Worksheets;
            
             var docFile = TempDirectory + Guid.NewGuid() + _xlsFileFormat;
 
@@ -164,10 +161,6 @@ namespace Fanex.Workbook.Service.Business
                 double marginLeftRight;
                 double marginTopBottom;
 
-                // the range object is used to hold the data
-                // we'll be reading from and to find the range of data.
-                //var workbooks = new Workbooks();
-
                 //Binding html file to workbook
 
                 var prter = app.ActivePrinter;
@@ -175,8 +168,8 @@ namespace Fanex.Workbook.Service.Business
                 object paramMissing = Type.Missing;
 
                 int length = sheetList.Count;
-                for (int i = length - 1; i >= 0; i--)
-                //for (int i = 0; i < length; i++)
+                //for (int i = length - 1; i >= 0; i--)
+                for (int i = 0; i < length; i++)
                 {
                     var htmlFile = CreateHtmlFile(sheetList[i].HtmlContent);
 
@@ -188,40 +181,37 @@ namespace Fanex.Workbook.Service.Business
                                                                                        false, 0, true, 1, 0);
 
                     //save workbook to new real Excel file
-                    Worksheet sheetToCopy = (Worksheet)workBookTemp.Worksheets[1];
-             
-                    Worksheet defaultWorksheet = workBook.Worksheets[1] as Worksheet;
-                    sheetToCopy.Name = "Sheet" + i;
-                    sheetToCopy.Copy(defaultWorksheet, Type.Missing);
-                    //Microsoft.Office.Interop.Excel.Range sel = sheetToCopy.Cells;
-                    //sel.Copy(Type.Missing);
+                    Worksheet sheetTemp = (Worksheet)workBookTemp.Worksheets[1];
 
-                    //Microsoft.Office.Interop.Excel._Worksheet sheetAdd = (Microsoft.Office.Interop.Excel._Worksheet)workBook.Worksheets.Add();
+                    // sheet to copy after
+                    Worksheet defaultWorksheet = workBook.Worksheets[i + 1] as Worksheet;
+                    sheetTemp.Name = "Sheet" + i;
+                    sheetTemp.Copy(Type.Missing, defaultWorksheet);
 
-                    //defaultWorksheet.Paste(Type.Missing, Type.Missing);
-
-                    defaultWorksheet.PageSetup.Zoom = false;
-                    defaultWorksheet.PageSetup.FitToPagesWide = 1;
-                    defaultWorksheet.PageSetup.CenterHorizontally = true;
+                    // sheet is copied and setting page
+                    Worksheet sheetCopy = workBook.Worksheets[i + 2] as Worksheet;
+                    sheetCopy.PageSetup.Zoom = false;
+                    sheetCopy.PageSetup.FitToPagesWide = 1;
+                    sheetCopy.PageSetup.CenterHorizontally = true;
 
                     //print option
                     switch (sheetList[i].PageOrientation)
                     {
                         case PageOrientation.Landscape:
-                            defaultWorksheet.PageSetup.Orientation = Microsoft.Office.Interop.Excel.XlPageOrientation.xlLandscape;
+                            sheetCopy.PageSetup.Orientation = Microsoft.Office.Interop.Excel.XlPageOrientation.xlLandscape;
                             break;
                         case PageOrientation.Portrait:
-                            defaultWorksheet.PageSetup.Orientation = Microsoft.Office.Interop.Excel.XlPageOrientation.xlPortrait;
+                            sheetCopy.PageSetup.Orientation = Microsoft.Office.Interop.Excel.XlPageOrientation.xlPortrait;
                             break;
                     }
 
                     if (sheetList[i].IsAutoFit)
                     {
-                        defaultWorksheet.Columns.AutoFit();
-
-                        var usedRange = defaultWorksheet.UsedRange;
+                        sheetCopy.Columns.AutoFit();
+                        var usedRange = sheetCopy.UsedRange;
                         var colCount = usedRange.Columns.Count;
                         var width = usedRange.Width;
+
                         // if the width of document smaller than default document width so the columns after the second column will be expanded
                         if (width < DocumentWidth)
                         {
@@ -239,7 +229,7 @@ namespace Fanex.Workbook.Service.Business
                                 col.ColumnWidth += expendedWidthForEachCol * (8.43 / 48);
                             }
                         }
-                        Microsoft.Office.Interop.Excel.Range offset = defaultWorksheet.UsedRange.Offset;
+                        Microsoft.Office.Interop.Excel.Range offset = sheetCopy.UsedRange.Offset;
                     }
 
                     switch (format)
@@ -247,18 +237,18 @@ namespace Fanex.Workbook.Service.Business
                         case DocumentType.Xlsx:
                             marginLeftRight = app.InchesToPoints(0.5);
                             marginTopBottom = app.InchesToPoints(0.75);
-                            defaultWorksheet.PageSetup.TopMargin = marginTopBottom;
-                            defaultWorksheet.PageSetup.BottomMargin = marginTopBottom;
-                            defaultWorksheet.PageSetup.LeftMargin = marginLeftRight;
-                            defaultWorksheet.PageSetup.RightMargin = marginLeftRight;
+                            sheetCopy.PageSetup.TopMargin = marginTopBottom;
+                            sheetCopy.PageSetup.BottomMargin = marginTopBottom;
+                            sheetCopy.PageSetup.LeftMargin = marginLeftRight;
+                            sheetCopy.PageSetup.RightMargin = marginLeftRight;
                             break;
 
                         case DocumentType.Pdf:
                             marginTopBottom = app.InchesToPoints(0.5);
-                            defaultWorksheet.PageSetup.TopMargin = marginTopBottom;
-                            defaultWorksheet.PageSetup.BottomMargin = marginTopBottom;
-                            defaultWorksheet.PageSetup.LeftMargin = 0;
-                            defaultWorksheet.PageSetup.RightMargin = 0;
+                            sheetCopy.PageSetup.TopMargin = marginTopBottom;
+                            sheetCopy.PageSetup.BottomMargin = marginTopBottom;
+                            sheetCopy.PageSetup.LeftMargin = 0;
+                            sheetCopy.PageSetup.RightMargin = 0;
                             break;
                     }
 
@@ -270,6 +260,10 @@ namespace Fanex.Workbook.Service.Business
                         File.Delete(htmlFile);
                     }
                 }
+
+                // Delete sheet 1 what is empty
+                Worksheet emptySheet = workBook.Worksheets[1] as Worksheet;
+                emptySheet.Delete();
 
                 switch (format)
                 {
@@ -294,6 +288,7 @@ namespace Fanex.Workbook.Service.Business
                         break;
                 }
 
+                
                 workBook.Close();
                 app.Workbooks.Close();
 
