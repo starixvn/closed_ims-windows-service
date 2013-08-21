@@ -35,8 +35,6 @@ namespace Fanex.Workbook.Service.Business
             Landscape, Portrait
         }
 
-
-
         private static string LoadCss(List<string> listCssFilePath)
         {
             string css = string.Empty;
@@ -51,11 +49,8 @@ namespace Fanex.Workbook.Service.Business
                 streamCss.Close();
             }
 
-
             return css;
         }
-
-       
 
         private static string CreateHtmlFile(string htmlContent)
         {
@@ -77,14 +72,12 @@ namespace Fanex.Workbook.Service.Business
             return FileDirectory + fileName;
         }
 
-
         public static byte[] CreateDocument(List<DocumentSetting> sheetList)
         {
             try
             {
                 DocumentType format = sheetList[0].DocumentType;
                 var isExists = System.IO.Directory.Exists(FileDirectory);
-                List<PageSetting> templateList = new List<PageSetting>();
                 if (!isExists)
                     System.IO.Directory.CreateDirectory(FileDirectory);
 
@@ -97,8 +90,6 @@ namespace Fanex.Workbook.Service.Business
 
                 for (int i = 0; i < sheetList.Count; i++)
                 {
-                    PageSetting pageTemp = new PageSetting();
-
                     string template = string.Empty;
                     template = templateTmp;
 

@@ -16,8 +16,7 @@ namespace Fanex.Workbook.Service.Entities
     [DataContract]
     public class DocumentSetting
     {
-        //[DataMember]
-        //public List<PageSetting> PageList;
+
         [DataMember]
         public string CssContent;
 
@@ -32,20 +31,5 @@ namespace Fanex.Workbook.Service.Entities
 
         [DataMember]
         public bool IsAutoFit;
-        //public DocumentSetting()
-        //{
-        //    PageList = new List<PageSetting>();
-        //}
     }
-
-    [DataContract]
-    public class PageSetting
-    {
-        [DataMember]
-        public string HtmlContent;
-
-        [DataMember]
-        public WorkBookManager.PageOrientation PageOrientation;
-    }
-
 }
