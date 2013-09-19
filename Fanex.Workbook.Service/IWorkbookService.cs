@@ -28,27 +28,28 @@ namespace Fanex.Workbook.Service
     }
 
     // Use a data contract as illustrated in the sample below to add composite types to service operations
+
     /// <summary>
     /// Composite Type.
     /// </summary>
     [DataContract]
     public class CompositeType
     {
-        bool boolValue = true;
-        string stringValue = "Hello ";
+        bool _boolValue = true;
+        string _stringValue = "Hello ";
 
         [DataMember]
         public bool BoolValue
         {
-            get { return boolValue; }
-            set { boolValue = value; }
+            get { return _boolValue; }
+            set { _boolValue = value; }
         }
 
         [DataMember]
         public string StringValue
         {
-            get { return stringValue; }
-            set { stringValue = value; }
+            get { return _stringValue; }
+            set { _stringValue = value; }
         }
     }
 }

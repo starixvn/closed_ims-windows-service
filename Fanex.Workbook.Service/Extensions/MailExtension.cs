@@ -20,10 +20,10 @@ namespace Fanex.Workbook.Service.Extensions
         /// <summary>
         /// Send mail.
         /// </summary>
-        /// <param name="to"></param>
-        /// <param name="title"></param>
-        /// <param name="subject"></param>
-        /// <param name="body"></param>
+        /// <param name="to">To.</param>
+        /// <param name="title">Title.</param>
+        /// <param name="subject">Subject.</param>
+        /// <param name="body">Body.</param>
         public static void SendMail(string to, string title, string subject, string body)
         {
             try
@@ -47,8 +47,8 @@ namespace Fanex.Workbook.Service.Extensions
         /// <summary>
         /// Send mail method.
         /// </summary>
-        /// <param name="mailSend"></param>
-        /// <returns></returns>
+        /// <param name="mailSend">Mail address.</param>
+        /// <returns>Fail or successful.</returns>
         private static bool DoSendMail(MailSetting mailSend)
         {
             try

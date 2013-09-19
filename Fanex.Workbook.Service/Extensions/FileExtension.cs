@@ -17,8 +17,8 @@ namespace Fanex.Workbook.Service.Extensions
         /// <summary>
         /// Write file.
         /// </summary>
-        /// <param name="sContent"></param>
-        public static void WriteFile(string sContent)
+        /// <param name="content">Content.</param>
+        public static void WriteFile(string content)
         {
             string logPath = AppDomain.CurrentDomain.BaseDirectory;
 
@@ -36,7 +36,7 @@ namespace Fanex.Workbook.Service.Extensions
             var fs = new FileStream(outPath, FileMode.Append, FileAccess.Write);
             var sw = new StreamWriter(fs);
 
-            sw.WriteLine(DateTime.Now + ": " + sContent);
+            sw.WriteLine(DateTime.Now + ": " + content);
 
             sw.Close();
             fs.Close();

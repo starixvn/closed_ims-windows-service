@@ -4,12 +4,11 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-using System.Runtime.Serialization;
-using Fanex.Workbook.Service.Business;
-using System.Collections.Generic;
-
 namespace Fanex.Workbook.Service.Entities
 {
+    using System.Runtime.Serialization;
+    using Fanex.Workbook.Service.Business;
+
     /// <summary>
     /// TODO: Update summary.
     /// </summary>

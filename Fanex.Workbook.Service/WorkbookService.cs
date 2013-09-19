@@ -12,6 +12,7 @@ namespace Fanex.Workbook.Service
     using Fanex.Workbook.Service.Extensions;
 
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
+
     /// <summary>
     /// Work book service.
     /// </summary>
@@ -36,7 +37,7 @@ namespace Fanex.Workbook.Service
         /// <summary>
         /// Get composite.
         /// </summary>
-        /// <param name="composite"></param>
+        /// <param name="composite">Composite Type.</param>
         /// <returns>Composite Type.</returns>
         public CompositeType GetDataUsingDataContract(CompositeType composite)
         {

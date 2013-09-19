@@ -13,6 +13,12 @@ namespace Fanex.Workbook.Service.Extensions
     /// </summary>
     public static class LogExtensions
     {
+        public enum LogType
+        {
+            Info,
+            Error
+        }
+
         public static void Log(Exception ex)
         {
             string toAddress = System.Configuration.ConfigurationManager.AppSettings["errorreceiver"];
@@ -27,12 +33,6 @@ namespace Fanex.Workbook.Service.Extensions
             MailExtension.SendMail(toAddress, "Fanex Workbook Error", "Fanex Workbook error", message);
 
             FileExtension.WriteFile(message);
-        }
-
-        public enum LogType
-        {
-            Info,
-            Error
         }
     }
 }

@@ -29,6 +29,9 @@ namespace Fanex.Workbook.Service.Business
 
         private const double DocumentWidth = 1040;
 
+        /// <summary>
+        /// Document type.
+        /// </summary>
         public enum DocumentType : int
         {
             Xlsx = 0,
@@ -41,63 +44,9 @@ namespace Fanex.Workbook.Service.Business
         }
 
         /// <summary>
-        /// Load style sheet.
-        /// </summary>
-        /// <param name="listCssFilePath">List style sheet path.</param>
-        /// <returns>List style sheet.</returns>
-        private static string LoadCss(List<string> listCssFilePath)
-        {
-            string css = string.Empty;
-
-            if (listCssFilePath == null || !listCssFilePath.Any())
-            {
-                return string.Empty;
-            }
-
-            foreach (var cssFilePath in listCssFilePath)
-            {
-                var streamCss = new StreamReader(cssFilePath);
-                css += streamCss.ReadToEnd();
-
-                streamCss.Close();
-            }
-
-            return css;
-        }
-
-        /// <summary>
-        /// Create Html file.
-        /// </summary>
-        /// <param name="htmlContent"></param>
-        /// <returns>Html Files.</returns>
-        private static string CreateHtmlFile(string htmlContent)
-        {
-            ////Open a memory stream that you can use to write back to the response
-            byte[] byteArray = Encoding.ASCII.GetBytes(htmlContent);
-            var stream = new MemoryStream(byteArray);
-            if (stream.Length == 0)
-            {
-                return string.Empty;
-            }
-
-            var fileName = Guid.NewGuid() + ".xls";
-            using (FileStream fileStream = System.IO.File.Create(FileDirectory + fileName, (int)stream.Length))
-            {
-                // Fill the bytes[] array with the stream data
-                var bytesInStream = new byte[stream.Length];
-                stream.Read(bytesInStream, 0, (int)bytesInStream.Length);
-
-                // Use FileStream object to write to the specified file
-                fileStream.Write(bytesInStream, 0, bytesInStream.Length);
-            }
-
-            return FileDirectory + fileName;
-        }
-
-        /// <summary>
         /// Return document memory to client.
         /// </summary>
-        /// <param name="sheetList">sheetList</param>
+        /// <param name="sheetList">Sheet list.</param>
         /// <returns>Document memory.</returns>
         public static byte[] CreateDocument(List<DocumentSetting> sheetList)
         {
@@ -175,8 +124,8 @@ namespace Fanex.Workbook.Service.Business
         /// <summary>
         /// Create document file.
         /// </summary>
-        /// <param name="sheetList"></param>
-        /// <param name="beginRow"></param>
+        /// <param name="sheetList">Sheet list.</param>
+        /// <param name="beginRow">Begin row.</param>
         /// <returns>Document from Html.</returns>
         private static string CreateDocFromHtml(List<DocumentSetting> sheetList, int beginRow = 0)
         {
@@ -317,9 +266,9 @@ namespace Fanex.Workbook.Service.Business
                 switch (format)
                 {
                     case DocumentType.Xlsx:
-                        object oSaveAsFile = (object)docFile;
+                        object saveAsFile = (object)docFile;
                         workBook.SaveAs(
-                            oSaveAsFile, 
+                            saveAsFile, 
                             Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookDefault, 
                             Type.Missing,
                             Type.Missing, 
@@ -334,22 +283,22 @@ namespace Fanex.Workbook.Service.Business
                         break;
 
                     case DocumentType.Pdf:
-                        const XlFixedFormatType paramExportFormat = XlFixedFormatType.xlTypePDF;
-                        const XlFixedFormatQuality paramExportQuality = XlFixedFormatQuality.xlQualityStandard;
-                        const bool paramOpenAfterPublish = false;
-                        const bool paramIncludeDocProps = true;
-                        const bool paramIgnorePrintAreas = true;
+                        const XlFixedFormatType ParamExportFormat = XlFixedFormatType.xlTypePDF;
+                        const XlFixedFormatQuality ParamExportQuality = XlFixedFormatQuality.xlQualityStandard;
+                        const bool ParamOpenAfterPublish = false;
+                        const bool ParamIncludeDocProps = true;
+                        const bool ParamIgnorePrintAreas = true;
                         var paramFromPage = Type.Missing;
                         var paramToPage = Type.Missing;
                         workBook.ExportAsFixedFormat(
-                            paramExportFormat, 
+                            ParamExportFormat, 
                             docFile, 
-                            paramExportQuality, 
-                            paramIncludeDocProps,
-                            paramIgnorePrintAreas, 
+                            ParamExportQuality, 
+                            ParamIncludeDocProps,
+                            ParamIgnorePrintAreas, 
                             paramFromPage, 
                             paramToPage,
-                            paramOpenAfterPublish, 
+                            ParamOpenAfterPublish, 
                             paramMissing);
                         break;
                 }
@@ -377,6 +326,60 @@ namespace Fanex.Workbook.Service.Business
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
             }
+        }
+
+        /// <summary>
+        /// Load style sheet.
+        /// </summary>
+        /// <param name="listCssFilePath">List style sheet path.</param>
+        /// <returns>List style sheet.</returns>
+        private static string LoadCss(List<string> listCssFilePath)
+        {
+            string css = string.Empty;
+
+            if (listCssFilePath == null || !listCssFilePath.Any())
+            {
+                return string.Empty;
+            }
+
+            foreach (var cssFilePath in listCssFilePath)
+            {
+                var streamCss = new StreamReader(cssFilePath);
+                css += streamCss.ReadToEnd();
+
+                streamCss.Close();
+            }
+
+            return css;
+        }
+
+        /// <summary>
+        /// Create Html file.
+        /// </summary>
+        /// <param name="htmlContent">Html content.</param>
+        /// <returns>Html Files.</returns>
+        private static string CreateHtmlFile(string htmlContent)
+        {
+            ////Open a memory stream that you can use to write back to the response
+            byte[] byteArray = Encoding.ASCII.GetBytes(htmlContent);
+            var stream = new MemoryStream(byteArray);
+            if (stream.Length == 0)
+            {
+                return string.Empty;
+            }
+
+            var fileName = Guid.NewGuid() + ".xls";
+            using (FileStream fileStream = System.IO.File.Create(FileDirectory + fileName, (int)stream.Length))
+            {
+                // Fill the bytes[] array with the stream data
+                var bytesInStream = new byte[stream.Length];
+                stream.Read(bytesInStream, 0, (int)bytesInStream.Length);
+
+                // Use FileStream object to write to the specified file
+                fileStream.Write(bytesInStream, 0, bytesInStream.Length);
+            }
+
+            return FileDirectory + fileName;
         }
     }
 }
