@@ -15,7 +15,14 @@ namespace Fanex.Workbook.Service.Extensions
     {
         public enum LogType
         {
+            /// <summary>
+            /// Information log.
+            /// </summary>
             Info,
+
+            /// <summary>
+            /// Error code.
+            /// </summary>
             Error
         }
 

@@ -20,10 +20,10 @@ namespace Fanex.Workbook.Service.Extensions
         /// <summary>
         /// Send mail.
         /// </summary>
-        /// <param name="to">To.</param>
-        /// <param name="title">Title.</param>
-        /// <param name="subject">Subject.</param>
-        /// <param name="body">Body.</param>
+        /// <param name="to">To mail to send. </param>
+        /// <param name="title">Title mail to send. </param>
+        /// <param name="subject">Subject mail to send.</param>
+        /// <param name="body">Body mail to send. </param>
         public static void SendMail(string to, string title, string subject, string body)
         {
             try

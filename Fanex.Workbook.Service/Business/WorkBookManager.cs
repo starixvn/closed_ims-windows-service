@@ -21,26 +21,41 @@ namespace Fanex.Workbook.Service.Business
     /// </summary>
     public static class WorkBookManager
     {
+        private const double DocumentWidth = 1040;
+
         private static readonly string FileDirectory = AppDomain.CurrentDomain.BaseDirectory + "\\";
 
         private static readonly string TempDirectory = "C:\\";
 
         private static string _xlsFileFormat;
 
-        private const double DocumentWidth = 1040;
-
         /// <summary>
         /// Document type.
         /// </summary>
         public enum DocumentType : int
         {
+            /// <summary>
+            /// Excel file to export.
+            /// </summary>
             Xlsx = 0,
+
+            /// <summary>
+            /// Pdf file to export.
+            /// </summary>
             Pdf = 1
         }
 
         public enum PageOrientation
         {
-            Landscape, Portrait
+            /// <summary>
+            /// Landscape setting.
+            /// </summary>
+            Landscape,
+            
+            /// <summary>
+            /// Portrait setting.
+            /// </summary>
+            Portrait
         }
 
         /// <summary>

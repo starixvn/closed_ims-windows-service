@@ -35,8 +35,8 @@ namespace Fanex.Workbook.Service
     [DataContract]
     public class CompositeType
     {
-        bool _boolValue = true;
-        string _stringValue = "Hello ";
+        private bool _boolValue = true;
+        private string _stringValue = "Hello ";
 
         [DataMember]
         public bool BoolValue

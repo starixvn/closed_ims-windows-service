@@ -16,18 +16,38 @@ namespace Fanex.Workbook.Service.Entities
     public class DocumentSetting
     {
         [DataMember]
-        public string CssContent;
+        public string CssContent
+        {
+            get;
+            set;
+        }
 
         [DataMember]
-        public string HtmlContent;
+        public string HtmlContent
+        {
+            get;
+            set;
+        }
 
         [DataMember]
-        public WorkBookManager.DocumentType DocumentType;
+        public WorkBookManager.DocumentType DocumentType
+        {
+            get;
+            set;
+        }
 
         [DataMember]
-        public WorkBookManager.PageOrientation PageOrientation;
+        public WorkBookManager.PageOrientation PageOrientation
+        {
+            get;
+            set;
+        }
 
         [DataMember]
-        public bool IsAutoFit;
+        public bool IsAutoFit
+        {
+            get;
+            set;
+        }
     }
 }

@@ -37,7 +37,7 @@ namespace Fanex.Workbook.Service
         /// <summary>
         /// Get composite.
         /// </summary>
-        /// <param name="composite">Composite Type.</param>
+        /// <param name="composite">Composite to.</param>
         /// <returns>Composite Type.</returns>
         public CompositeType GetDataUsingDataContract(CompositeType composite)
         {

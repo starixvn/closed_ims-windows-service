@@ -17,7 +17,7 @@ namespace Fanex.Workbook.Service.Extensions
         /// <summary>
         /// Write file.
         /// </summary>
-        /// <param name="content">Content.</param>
+        /// <param name="content">Content file.</param>
         public static void WriteFile(string content)
         {
             string logPath = AppDomain.CurrentDomain.BaseDirectory;
