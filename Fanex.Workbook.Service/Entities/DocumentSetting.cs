@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="ExportFileInput.cs" company="Microsoft">
+// <copyright file="DocumentSetting.cs" company="Microsoft">
 // TODO: Update copyright text.
 // </copyright>
 // -----------------------------------------------------------------------
@@ -16,7 +16,6 @@ namespace Fanex.Workbook.Service.Entities
     [DataContract]
     public class DocumentSetting
     {
-
         [DataMember]
         public string CssContent;
 

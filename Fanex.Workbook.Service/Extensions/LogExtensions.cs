@@ -1,20 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using Fanex.Logging;
+﻿// -----------------------------------------------------------------------
+// <copyright file="LogExtensions.cs" company="Microsoft">
+// TODO: Update copyright text.
+// </copyright>
+// -----------------------------------------------------------------------
 
 namespace Fanex.Workbook.Service.Extensions
 {
+    using System;
+
+    /// <summary>
+    /// Log extensions.
+    /// </summary>
     public static class LogExtensions
     {
         public static void Log(Exception ex)
         {
-
             string toAddress = System.Configuration.ConfigurationManager.AppSettings["errorreceiver"];
 
-            MailExtension.SendMail(toAddress, "Fanex Workbook Error", "Fanex Workbook error", ex.Message + "<br> "+ ex.StackTrace +  "<br>" + "\n");
+            MailExtension.SendMail(toAddress, "Fanex Workbook Error", "Fanex Workbook error", ex.Message + "<br> " + ex.StackTrace + "<br>" + "\n");
             FileExtension.WriteFile(ex.Message + "\n" + ex.StackTrace + "\n");
         }
 
@@ -31,8 +34,5 @@ namespace Fanex.Workbook.Service.Extensions
             Info,
             Error
         }
-
-
-        
     }
 }

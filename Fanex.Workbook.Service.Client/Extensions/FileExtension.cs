@@ -1,19 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
+﻿// <copyright file="FileExtension.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
 
 namespace Fanex.Workbook.Service.Extensions
 {
+    using System;
+    using System.IO;
+
+    /// <summary>
+    /// File extension.
+    /// </summary>
     public class FileExtension
     {
+        /// <summary>
+        /// Write file.
+        /// </summary>
+        /// <param name="sContent"></param>
         public static void WriteFile(string sContent)
         {
-
             string logPath = AppDomain.CurrentDomain.BaseDirectory;
 
-            //get the folder that's in
+            ////get the folder that's in
 
             var outPath = string.Format(@"{0}\Logs\Error", logPath);
 
