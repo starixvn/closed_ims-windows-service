@@ -144,7 +144,6 @@ namespace Fanex.Workbook.Service.Business
             var workBooks = app.Workbooks;
 
             Microsoft.Office.Interop.Excel.Workbook workBook = workBooks.Add(XlWBATemplate.xlWBATWorksheet);
-           
             var docFile = TempDirectory + Guid.NewGuid() + _xlsFileFormat;
 
             try

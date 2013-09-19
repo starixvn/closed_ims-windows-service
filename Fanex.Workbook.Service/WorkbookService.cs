@@ -19,9 +19,12 @@ namespace Fanex.Workbook.Service
 
         public byte[] CreateDocument(List<DocumentSetting> input)
         {
-            if (input == null)
+            if (input == null) 
+            {
                 return null;
+            }                
             //return WorkBookManager.CreateDocument(input.HtmlContent, input.CssContent, input.DocumentType, input.PageOrientation);
+            
             return WorkBookManager.CreateDocument(input);
         }
 
