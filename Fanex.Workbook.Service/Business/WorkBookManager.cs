@@ -144,6 +144,7 @@ namespace Fanex.Workbook.Service.Business
             var workBooks = app.Workbooks;
 
             Microsoft.Office.Interop.Excel.Workbook workBook = workBooks.Add(XlWBATemplate.xlWBATWorksheet);
+
             var docFile = TempDirectory + Guid.NewGuid() + _xlsFileFormat;
 
             try
@@ -165,10 +166,21 @@ namespace Fanex.Workbook.Service.Business
 
                     if (string.IsNullOrEmpty(htmlFile)) return string.Empty;
 
-                    Microsoft.Office.Interop.Excel.Workbook workBookTemp = workBooks.Open(htmlFile, 0, true, 5, "", "", true,
-                                                                                       Microsoft.Office.Interop.Excel.
-                                                                                           XlPlatform.xlWindows, "\t", false,
-                                                                                       false, 0, true, 1, 0);
+                    Microsoft.Office.Interop.Excel.Workbook workBookTemp =  workBooks.Open(
+                        htmlFile,
+                        0,
+                        true,
+                        5,
+                        "",
+                        "",
+                        true,
+                        Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t",
+                        false,
+                        false,
+                        0,
+                        true,
+                        1, 
+                        0);
 
                     //save workbook to new real Excel file
                     Worksheet sheetTemp = (Worksheet)workBookTemp.Worksheets[1];
@@ -277,21 +289,19 @@ namespace Fanex.Workbook.Service.Business
                                                      paramOpenAfterPublish, paramMissing);
                         break;
                 }
-
                 
-                workBook.Close();
-                app.Workbooks.Close();
-
                 return docFile;
-            }
+            }           
             catch (Exception ex)
             {
                 LogExtensions.Log(ex);
                 return string.Empty;
             }
-
             finally
-            {
+            {                
+                workBooks.Close();
+                app.Workbooks.Close();
+
                 // Close the ApplicationClass object.
                 if (app != null)
                 {
