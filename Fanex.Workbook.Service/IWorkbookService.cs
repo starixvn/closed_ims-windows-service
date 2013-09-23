@@ -1,10 +1,16 @@
-﻿using System.Runtime.Serialization;
-using System.ServiceModel;
-using Fanex.Workbook.Service.Entities;
-using System.Collections.Generic;
+﻿// -----------------------------------------------------------------------
+// <copyright file="IWorkBookService.cs" company="Microsoft">
+// TODO: Update copyright text.
+// </copyright>
+// -----------------------------------------------------------------------
 
 namespace Fanex.Workbook.Service
 {
+    using System.Collections.Generic;
+    using System.Runtime.Serialization;
+    using System.ServiceModel;
+    using Fanex.Workbook.Service.Entities;
+
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
     [ServiceContract]
     public interface IWorkBookService
@@ -21,28 +27,29 @@ namespace Fanex.Workbook.Service
         // TODO: Add your service operations here
     }
 
-
-
-
     // Use a data contract as illustrated in the sample below to add composite types to service operations
+
+    /// <summary>
+    /// Composite Type.
+    /// </summary>
     [DataContract]
     public class CompositeType
     {
-        bool boolValue = true;
-        string stringValue = "Hello ";
+        private bool _boolValue = true;
+        private string _stringValue = "Hello ";
 
         [DataMember]
         public bool BoolValue
         {
-            get { return boolValue; }
-            set { boolValue = value; }
+            get { return _boolValue; }
+            set { _boolValue = value; }
         }
 
         [DataMember]
         public string StringValue
         {
-            get { return stringValue; }
-            set { stringValue = value; }
+            get { return _stringValue; }
+            set { _stringValue = value; }
         }
     }
 }
