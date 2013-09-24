@@ -1,8 +1,8 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="FileExtension.cs" company="Microsoft">
-// TODO: Update copyright text.
+﻿// --------------------------------------------------------------------------
+// <copyright file="FileExtension.cs" company="Nexcel Solutions Vietnam">
+//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
 // </copyright>
-// -----------------------------------------------------------------------
+// --------------------------------------------------------------------------
 
 namespace Fanex.Workbook.Service.Extensions
 {
@@ -10,20 +10,18 @@ namespace Fanex.Workbook.Service.Extensions
     using System.IO;
 
     /// <summary>
-    /// File extension.
+    /// Class FileExtension.
     /// </summary>
     public class FileExtension
     {
         /// <summary>
-        /// Write file.
+        /// Writes the file.
         /// </summary>
-        /// <param name="content">Content file.</param>
-        public static void WriteFile(string content)
+        /// <param name="errorContent">Content of the s.</param>
+        public static void WriteFile(string errorContent)
         {
             string logPath = AppDomain.CurrentDomain.BaseDirectory;
-
             ////get the folder that's in
-
             var outPath = string.Format(@"{0}\Logs\Error", logPath);
 
             if (!Directory.Exists(outPath))
@@ -36,7 +34,7 @@ namespace Fanex.Workbook.Service.Extensions
             var fs = new FileStream(outPath, FileMode.Append, FileAccess.Write);
             var sw = new StreamWriter(fs);
 
-            sw.WriteLine(DateTime.Now + ": " + content);
+            sw.WriteLine(DateTime.Now + ": " + errorContent);
 
             sw.Close();
             fs.Close();
