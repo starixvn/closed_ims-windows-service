@@ -1,0 +1,71 @@
+<<<<<<< HEAD
+﻿// --------------------------------------------------------------------------
+// <copyright file="FileExtension.cs" company="Nexcel Solutions Vietnam">
+//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+=======
+﻿// -----------------------------------------------------------------------
+// <copyright file="FileExtension.cs" company="Microsoft">
+// TODO: Update copyright text.
+// </copyright>
+// -----------------------------------------------------------------------
+>>>>>>> b612cf553b8a25fccb2e730240491522caa6a6c9
+
+namespace Fanex.Workbook.Service.Extensions
+{
+    using System;
+    using System.IO;
+
+    /// <summary>
+<<<<<<< HEAD
+    /// Class FileExtension.
+=======
+    /// File extension.
+>>>>>>> b612cf553b8a25fccb2e730240491522caa6a6c9
+    /// </summary>
+    public class FileExtension
+    {
+        /// <summary>
+<<<<<<< HEAD
+        /// Writes the file.
+        /// </summary>
+        /// <param name="errorContent">Content of the s.</param>
+        public static void WriteFile(string errorContent)
+        {
+            string logPath = AppDomain.CurrentDomain.BaseDirectory;
+            ////get the folder that's in
+=======
+        /// Write file.
+        /// </summary>
+        /// <param name="content">Content file.</param>
+        public static void WriteFile(string content)
+        {
+            string logPath = AppDomain.CurrentDomain.BaseDirectory;
+
+            ////get the folder that's in
+
+>>>>>>> b612cf553b8a25fccb2e730240491522caa6a6c9
+            var outPath = string.Format(@"{0}\Logs\Error", logPath);
+
+            if (!Directory.Exists(outPath))
+            {
+                Directory.CreateDirectory(outPath);
+            }
+
+            outPath += string.Format(@"\{0:yyyy-MM-dd}.txt", DateTime.Now.Date);
+
+            var fs = new FileStream(outPath, FileMode.Append, FileAccess.Write);
+            var sw = new StreamWriter(fs);
+
+<<<<<<< HEAD
+            sw.WriteLine(DateTime.Now + ": " + errorContent);
+=======
+            sw.WriteLine(DateTime.Now + ": " + content);
+>>>>>>> b612cf553b8a25fccb2e730240491522caa6a6c9
+
+            sw.Close();
+            fs.Close();
+        }
+    }
+}
