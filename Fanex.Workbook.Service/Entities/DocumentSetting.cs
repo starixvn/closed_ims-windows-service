@@ -1,53 +1,42 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="DocumentSetting.cs" company="Microsoft">
+// <copyright file="ExportFileInput.cs" company="Microsoft">
 // TODO: Update copyright text.
 // </copyright>
 // -----------------------------------------------------------------------
 
+using System.Runtime.Serialization;
+using Fanex.Workbook.Service.Business;
+using System.Collections.Generic;
+
 namespace Fanex.Workbook.Service.Entities
 {
-    using System.Runtime.Serialization;
-    using Fanex.Workbook.Service.Business;
-
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     [DataContract]
-    public class DocumentSetting
+    public class PageSetting
     {
         [DataMember]
-        public string CssContent
-        {
-            get;
-            set;
-        }
+        public string CssContent;
 
         [DataMember]
-        public string HtmlContent
-        {
-            get;
-            set;
-        }
+        public string HtmlContent;
 
         [DataMember]
-        public WorkBookManager.DocumentType DocumentType
-        {
-            get;
-            set;
-        }
+        public WorkBookManager.PageOrientation PageOrientation;
 
         [DataMember]
-        public WorkBookManager.PageOrientation PageOrientation
-        {
-            get;
-            set;
-        }
+        public bool IsAutoFit;
+    }
 
-        [DataMember]
-        public bool IsAutoFit
-        {
-            get;
-            set;
-        }
+    public class DocumentFile
+    {
+        public string FileName;
+
+        public WorkBookManager.DocumentType DocumentType;
+
+        public PageSetting MainPage;
+
+        public List<PageSetting> PageDetailList;
     }
 }
