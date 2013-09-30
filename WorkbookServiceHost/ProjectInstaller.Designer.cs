@@ -1,22 +1,31 @@
-﻿namespace WorkbookServiceHost
-{
-    partial class ProjectInstaller
-    {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
+﻿// --------------------------------------------------------------------------
+// <copyright file="ProjectInstaller.Designer.cs" company="Nexcel Solutions Vietnam">
+//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
 
-        /// <summary> 
+namespace WorkbookServiceHost
+{
+    /// <summary>
+    /// Class ProjectInstaller.
+    /// </summary>
+    public partial class ProjectInstaller
+    {
+        private System.ComponentModel.IContainer _components = null;
+        private System.ServiceProcess.ServiceProcessInstaller _serviceProcessInstaller1;
+        private System.ServiceProcess.ServiceInstaller _serviceInstaller1;
+
+        /// <summary>
         /// Clean up any resources being used.
         /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        /// <param name="disposing">True if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
+            if (disposing && (_components != null))
             {
-                components.Dispose();
+                _components.Dispose();
             }
+
             base.Dispose(disposing);
         }
 
@@ -28,32 +37,29 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.serviceProcessInstaller1 = new System.ServiceProcess.ServiceProcessInstaller();
-            this.serviceInstaller1 = new System.ServiceProcess.ServiceInstaller();
+            this._serviceProcessInstaller1 = new System.ServiceProcess.ServiceProcessInstaller();
+            this._serviceInstaller1 = new System.ServiceProcess.ServiceInstaller();
             // 
             // serviceProcessInstaller1
             // 
-            this.serviceProcessInstaller1.Account = System.ServiceProcess.ServiceAccount.LocalService;
-            this.serviceProcessInstaller1.Password = null;
-            this.serviceProcessInstaller1.Username = null;
+            this._serviceProcessInstaller1.Account = System.ServiceProcess.ServiceAccount.LocalService;
+            this._serviceProcessInstaller1.Password = null;
+            this._serviceProcessInstaller1.Username = null;
             // 
             // serviceInstaller1
             // 
-            this.serviceInstaller1.Description = "Fanex Workbook Service";
-            this.serviceInstaller1.ServiceName = "_Fanex.Workbook";
-            this.serviceInstaller1.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
+            this._serviceInstaller1.Description = "Fanex Workbook Service";
+            this._serviceInstaller1.ServiceName = "_Fanex.Workbook";
+            this._serviceInstaller1.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
             // 
             // ProjectInstaller
             // 
             this.Installers.AddRange(new System.Configuration.Install.Installer[] {
-            this.serviceProcessInstaller1,
-            this.serviceInstaller1});
+            this._serviceProcessInstaller1,
+            this._serviceInstaller1});
 
         }
 
         #endregion
-
-        private System.ServiceProcess.ServiceProcessInstaller serviceProcessInstaller1;
-        private System.ServiceProcess.ServiceInstaller serviceInstaller1;
     }
 }

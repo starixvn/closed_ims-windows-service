@@ -16,13 +16,11 @@ namespace Fanex.Workbook.Service.Extensions
         /// <summary>
         /// Write file.
         /// </summary>
-        /// <param name="sContent"></param>
-        public static void WriteFile(string sContent)
+        /// <param name="stringContent">Content of the s.</param>
+        public static void WriteFile(string stringContent)
         {
             string logPath = AppDomain.CurrentDomain.BaseDirectory;
-
             ////get the folder that's in
-
             var outPath = string.Format(@"{0}\Logs\Error", logPath);
 
             if (!Directory.Exists(outPath))
@@ -35,7 +33,7 @@ namespace Fanex.Workbook.Service.Extensions
             var fs = new FileStream(outPath, FileMode.Append, FileAccess.Write);
             var sw = new StreamWriter(fs);
 
-            sw.WriteLine(DateTime.Now + ": " + sContent);
+            sw.WriteLine(DateTime.Now + ": " + stringContent);
 
             sw.Close();
             fs.Close();
