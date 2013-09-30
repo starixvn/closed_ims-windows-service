@@ -269,7 +269,11 @@ namespace Fanex.Workbook.Service.Business
 
                 //Delete temp html file
                 string forderDirectory = FileDirectory + documentFile.FileName;
-                Directory.Delete(@forderDirectory, true);
+                var isExists = System.IO.Directory.Exists(forderDirectory);
+                if (isExists)
+                {
+                    Directory.Delete(@forderDirectory, true);
+                }
 
                 if (File.Exists(htmlFile))
                 {
