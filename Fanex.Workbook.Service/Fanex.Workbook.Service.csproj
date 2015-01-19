@@ -33,9 +33,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Fanex.Common">
-      <HintPath>..\_Dependency\Fanex.Common.dll</HintPath>
-    </Reference>
     <Reference Include="Fanex.Logging">
       <HintPath>..\_Dependency\Fanex.Logging.dll</HintPath>
     </Reference>
