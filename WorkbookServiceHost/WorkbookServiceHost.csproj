@@ -72,6 +72,10 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="WorkbookServiceHost.exe.LOCAL.config">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ProjectInstaller.resx">
