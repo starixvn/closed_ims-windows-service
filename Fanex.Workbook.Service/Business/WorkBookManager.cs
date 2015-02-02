@@ -22,7 +22,7 @@ namespace Fanex.Workbook.Service.Business
     {
         private const double DocumentWidth = 1040;
         private static readonly string FileDirectory = AppDomain.CurrentDomain.BaseDirectory + "\\";
-        private static readonly string TempDirectory = AppDomain.CurrentDomain.BaseDirectory + "\\Temp\\";
+        private static readonly string TempDirectory = "C:\\";
         private static string _xlsFileFormat;
 
         /// <summary>
