@@ -1,13 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Fanex.Workbook.Service.Entities" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Fanex.Workbook.Service.Entities" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import namespace="http://schemas.datacontract.org/2004/07/Fanex.Workbook.Service.Business" />
-  <xs:complexType name="DocumentSetting">
+  <xs:complexType name="DocumentFile">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Fanex.Workbook.Service.Business" minOccurs="0" name="DocumentType" type="q1:WorkBookManager.DocumentType" />
+      <xs:element minOccurs="0" name="FileName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MainPage" nillable="true" type="tns:PageSetting" />
+      <xs:element minOccurs="0" name="PageDetailList" nillable="true" type="tns:ArrayOfPageSetting" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DocumentFile" nillable="true" type="tns:DocumentFile" />
+  <xs:complexType name="PageSetting">
     <xs:sequence>
       <xs:element minOccurs="0" name="CssContent" nillable="true" type="xs:string" />
-      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Fanex.Workbook.Service.Business" minOccurs="0" name="DocumentType" type="q1:WorkBookManager.DocumentType" />
       <xs:element minOccurs="0" name="HtmlContent" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsAutoFit" type="xs:boolean" />
       <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Fanex.Workbook.Service.Business" minOccurs="0" name="PageOrientation" type="q2:WorkBookManager.PageOrientation" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="DocumentSetting" nillable="true" type="tns:DocumentSetting" />
+  <xs:element name="PageSetting" nillable="true" type="tns:PageSetting" />
+  <xs:complexType name="ArrayOfPageSetting">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PageSetting" nillable="true" type="tns:PageSetting" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPageSetting" nillable="true" type="tns:ArrayOfPageSetting" />
 </xs:schema>

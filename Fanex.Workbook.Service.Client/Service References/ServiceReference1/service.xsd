@@ -19,7 +19,7 @@
   <xs:element name="CreateDocument">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Fanex.Workbook.Service.Entities" minOccurs="0" name="input" nillable="true" type="q1:DocumentSetting" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Fanex.Workbook.Service.Entities" minOccurs="0" name="input" nillable="true" type="q1:DocumentFile" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -20,9 +20,9 @@ namespace Fanex.Workbook.Service.Client
         /// <param name="args">The arguments.</param>
         private static void Main(string[] args)
         {
-            var clientService = new ServiceReference1.WorkbookServiceClient();
+            var clientService = new ServiceReference1.WorkBookServiceClient();
 
-            var test = clientService.CreateDocument(new DocumentSetting());
+            var test = clientService.CreateDocument(new ServiceReference1.DocumentFile());
             var ms = new MemoryStream(test);
 
             //// convert stream to string
